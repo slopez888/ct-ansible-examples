@@ -4,11 +4,11 @@
   ec2_elb_lb:
     name: "ansible-windows-demo-lb"
     state: present
-    region: us-east-1
+    region: us-west-1
     zones:
-      - us-east-1b
-      - us-east-1d
-      - us-east-1e
+      - us-west-1a
+      - us-west-1b
+      - us-west-1c
     listeners:
       - protocol: http # options are http, https, ssl, tcp
         load_balancer_port: 80
