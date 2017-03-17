@@ -7,7 +7,7 @@
     ec2: >
       access_key="{{ ec2_access_key }}"
       region="{{ ec2_region }}"
-    ec2_hosts: tag_Name_ctjon_win_web
+    ec2_hosts: tag_Name_ctjon_win_wamp
 
   tasks:
   - name: Gather EC2 facts
@@ -23,7 +23,7 @@
     ec2: >
       access_key="{{ ec2_access_key }}"
       region="{{ ec2_region }}"
-    ec2_hosts: tag_Name_ctjon_win_web
+    ec2_hosts: tag_Name_ctjon_win_wamp
 
   tasks:
   - name: Terminate EC2 hosts
