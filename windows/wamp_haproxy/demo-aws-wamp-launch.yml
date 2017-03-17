@@ -17,7 +17,7 @@
      type="{{ ec2_instance_type }}"
      image="{{ ec2_image }}"
      region="{{ ec2_region }}"
-     instance_tags="{'ansible_group':'windows_webservers','{{ ec2_tag_group }}', 'type':'{{ ec2_instance_type }}', 'group':'{{ ec2_security_group }}', 'Name':'{{ tower_user_name }}''_win_web'}"
+     instance_tags="{'ansible_group':'windows_webservers','ctjon_demo', 'type':'{{ ec2_instance_type }}', 'group':'{{ ec2_security_group }}', 'Name':'{{ tower_user_name }}''_win_web'}"
      count="{{ ec2_instance_count }}"
      wait=true
     register: ec2
@@ -34,7 +34,7 @@
      type="{{ ec2_instance_type }}"
      image="{{ ec2_image }}"
      region="{{ ec2_region }}"
-     instance_tags="{'ansible_group':'windows_dbservers','{{ ec2_tag_group }}', 'type':'{{ ec2_instance_type }}', 'group':'{{ ec2_security_group }}', 'Name':'{{ tower_user_name }}''_win_db'}"
+     instance_tags="{'ansible_group':'windows_dbservers','ctjon_demo', 'type':'{{ ec2_instance_type }}', 'group':'{{ ec2_security_group }}', 'Name':'{{ tower_user_name }}''_win_db'}"
      count="1"
      wait=true
     register: ec2
