@@ -4,7 +4,7 @@
   ec2_elb_lb:
     name: "ansible-windows-demo-lb"
     state: present
-    region: us-west-1
+    region: "{{ ec2_region }}"
     zones:
       - us-west-1a
       - us-west-1b
