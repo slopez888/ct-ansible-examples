@@ -2,12 +2,11 @@
 # This role creates the AWS ELB and configures it.
 - name: Create the ELB in AWS
   ec2_elb_lb:
-    name: "ansible-windows-demo-lb"
+    name: "ctjon"
     state: present
     region: "{{ ec2_region }}"
     zones:
       - us-west-1a
-      - us-west-1b
       - us-west-1c
     listeners:
       - protocol: http # options are http, https, ssl, tcp
