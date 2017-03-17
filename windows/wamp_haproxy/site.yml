@@ -58,7 +58,7 @@
     local_action: 
       module: ec2_elb
       region: "{{ ec2_region }};
-      instance_id: "{{ ec2_id }}"
+      instance_id: "{{ ec2_instance_id }}"
       ec2_elbs: "ansible-windows-demo-lb"
       wait_timeout: 330
       state: 'present'
