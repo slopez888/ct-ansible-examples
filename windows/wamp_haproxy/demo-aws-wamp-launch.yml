@@ -42,10 +42,6 @@
     tags:
       - db
 
-  - debug:
-      ec2: "{{ ec2.instances.public_dns_name }}"
-      verbosity: 2
-
   - name: Wait for WinRM to come up
     local_action: wait_for host={{ item.public_dns_name }}
       port=5986 delay=60 timeout=320 state=started
