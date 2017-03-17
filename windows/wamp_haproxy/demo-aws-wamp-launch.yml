@@ -43,7 +43,7 @@
       - db
 
   - debug:
-      var: "{{ ec2.instances.public_dns_name }}"
+      ec2: "{{ ec2.instances.public_dns_name }}"
       verbosity: 2
 
   - name: Wait for WinRM to come up
