@@ -35,9 +35,6 @@
   connection: local 
   gather_facts: False
 
-  vars:
-    ec2_elb.validate_certs = no
-
   roles:
    - elb
   
