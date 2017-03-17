@@ -7,7 +7,7 @@
     ec2: >
       access_key="{{ ec2_access_key }}"
       region="{{ ec2_region }}"
-    ec2_hosts: tag_Name_"{{ec2_tag_group}}"
+    ec2_hosts: tag_Name_ctjon_demo
 
   tasks:
   - name: Gather EC2 facts
@@ -23,13 +23,13 @@
     ec2: >
       access_key="{{ ec2_access_key }}"
       region="{{ ec2_region }}"
-    ec2_hosts: tag_Name_"{{ec2_tag_group}}"
+    ec2_hosts: tag_Name_ctjon_demo
 
   tasks:
   - name: Terminate EC2 hosts
     ec2:
       region: "{{ ec2_region }}"
       instance_tags:
-        Name: "{{ ec2_tag_group }}"
+        Name: ctjon_demo
       state: absent
       wait: True
