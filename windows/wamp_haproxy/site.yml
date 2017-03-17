@@ -36,7 +36,7 @@
   gather_facts: False
 
   vars:
-    validate_certs = no
+    ec2_elb.validate_certs = no
 
   roles:
    - elb
