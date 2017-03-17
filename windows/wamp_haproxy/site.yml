@@ -43,7 +43,7 @@
 
 # Add the webservers to the load balancer(s)
 - hosts: tag_ansible_group_windows_webservers
-  connection: winrm
+  connection: local
   gather_facts: False
 
   vars:
