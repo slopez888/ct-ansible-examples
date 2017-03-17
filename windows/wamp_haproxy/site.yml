@@ -2,7 +2,7 @@
 ## This playbook deploys the whole application stack in this site.  
 
 # Configure and deploy database servers.
-- hosts: tag_ansible_group_windows_dbservers
+- hosts: tag_ansible_group_ctjon_windows_dbservers
   connection: winrm
 
   vars:
@@ -17,7 +17,7 @@
 # Configure and deploy the web servers. Note that we include two roles here, 
 # the 'base-apache' role which simply sets up Apache, and 'web' which includes
 # our example web application.
-- hosts: tag_ansible_group_windows_webservers
+- hosts: tag_ansible_group_ctjon_windows_webservers
   connection: winrm
 
   vars:
