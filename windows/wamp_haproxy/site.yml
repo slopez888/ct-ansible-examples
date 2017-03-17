@@ -35,6 +35,9 @@
   connection: local 
   gather_facts: False
 
+  vars:
+    validate_certs = no
+
   roles:
    - elb
   
