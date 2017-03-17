@@ -4,8 +4,10 @@
   gather_facts: false
 
   vars:
-    ec2_region "{{ ec2_region }}"
-    ec2_hosts: tag_Name_ctjon_win_web tag_Name_ctjon_win_db
+    ec2: >
+      access_key="{{ ec2_access_key }}"
+      region="{{ ec2_region }}"
+    ec2_hosts: tag_Name_ctjon_win_web
 
   tasks:
   - name: Gather EC2 facts
@@ -18,7 +20,7 @@
   connection: local
 
   vars:
-    ec2_hosts: tag_Name_ctjon_admin
+    ec2_hosts: tag_Name_ctjon_win_web
     ec2_region="{{ ec2_region }}"
 
   tasks:
@@ -26,6 +28,6 @@
     ec2:
       region: "{{ ec2_region }}"
       instance_tags:
-        Name: ctjon_win_db ctjon_win_web
+        Name: ctjon_win_web
       state: absent
       wait: True
