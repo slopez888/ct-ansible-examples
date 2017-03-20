@@ -30,38 +30,38 @@
   tags: 
   - web
 
-# Configure and deploy the load balancer(s).
-- hosts: localhost
-  connection: local 
-  gather_facts: False
-
-  roles:
-   - elb
-  
-  tags: 
-  - lb
-
-# Add the webservers to the load balancer(s)
-- hosts: tag_ansible_group_windows_webservers
-  connection: local
-  gather_facts: False
-
-  vars:
-    ansible_ssh_port : 5986
-
-  tasks:
-
-  - name: Wait for webserver to come up
-    local_action: wait_for host={{ inventory_hostname }} port=80 state=started timeout=80
-
-  - name: Add host to load balancing pool 
-    local_action: 
-      module: ec2_elb
-      region: "{{ ec2_region }}"
-      instance_id: "{{ ec2_instance_id }}"
-      ec2_elbs: "ctjon"
-      wait_timeout: 330
-      state: 'present'
-
-  tags:
-  - lb
+## Configure and deploy the load balancer(s).
+#- hosts: localhost
+#  connection: local 
+#  gather_facts: False
+#
+#  roles:
+#   - elb
+#  
+#  tags: 
+#  - lb
+#
+## Add the webservers to the load balancer(s)
+#- hosts: tag_ansible_group_windows_webservers
+#  connection: local
+#  gather_facts: False
+#
+#  vars:
+#    ansible_ssh_port : 5986
+#
+#  tasks:
+#
+#  - name: Wait for webserver to come up
+#    local_action: wait_for host={{ inventory_hostname }} port=80 state=started timeout=80
+#
+#  - name: Add host to load balancing pool 
+#    local_action: 
+#      module: ec2_elb
+#      region: "{{ ec2_region }}"
+#      instance_id: "{{ ec2_instance_id }}"
+#      ec2_elbs: "ctjon"
+#      wait_timeout: 330
+#      state: 'present'
+#
+#  tags:
+#  - lb
