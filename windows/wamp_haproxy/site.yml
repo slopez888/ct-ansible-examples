@@ -2,17 +2,17 @@
 ## This playbook deploys the whole application stack in this site.  
 
 # Configure and deploy database servers.
-- hosts: tag_ansible_group_ctjon_windows_dbservers
-  connection: winrm
-
-  vars:
-    ansible_ssh_port : 5986
-
-  roles:
-  - mssql
-
-  tags: 
-  - db
+#- hosts: tag_ansible_group_ctjon_windows_dbservers
+#  connection: winrm
+#
+#  vars:
+#    ansible_ssh_port : 5986
+#
+#  roles:
+#  - mssql
+#
+#  tags: 
+#  - db
 
 # Configure and deploy the web servers. Note that we include two roles here, 
 # the 'base-apache' role which simply sets up Apache, and 'web' which includes
