@@ -2,7 +2,7 @@
 set-psdebug -strict
 $error[0]|format-list -force
 #[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.SMO') | out-null
-Add-Type -AssemblyName "Microsoft.SqlServer.Management.SMO"
+[System.Reflection.Assembly]::Assembly.Load('Microsoft.SqlServer.SMO') | out-null
 $srv = new-Object Microsoft.SqlServer.Management.Smo.Server("(local)")
 $db = New-Object Microsoft.SqlServer.Management.Smo.Database($srv, "Ansible Demo DB")
 $db.Create()
