@@ -55,6 +55,13 @@
     dest: /etc/init.d/jboss 
     mode: 0755
 
+- name: setup pid file
+  file: 
+    path: /var/run/jboss-as/jboss-as-standalone.pid
+    owner: jboss 
+    group: jboss 
+    recurse: yes
+
 - name: Workaround for systemd bug
   shell: service jboss start && chkconfig jboss on
   ignore_errors: yes
