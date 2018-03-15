@@ -55,14 +55,6 @@
     dest: /etc/init.d/jboss 
     mode: 0755
 
-- name: setup pid file
-  file: 
-    path: /var/run/jboss-as/jboss-as-standalone.pid
-    owner: jboss 
-    group: jboss 
-    directory: no
-    recurse: yes
-
 # Rename the dir to avoid encoding the version in the init script
 - name: fix pid file
   command: restorecon -RF /var/run/jboss-as
