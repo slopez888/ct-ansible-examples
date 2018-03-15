@@ -55,15 +55,15 @@
     dest: /etc/init.d/jboss 
     mode: 0755
 
-#- name: Workaround for systemd bug
-#  shell: service jboss start && chkconfig jboss on
-#  ignore_errors: yes
-#
-- name: Enable JBoss to be started at boot
-  service: 
-    name: jboss 
-    enabled: yes 
-    state: started
+- name: Workaround for systemd bug
+  shell: service jboss start && chkconfig jboss on
+  ignore_errors: yes
+
+#- name: Enable JBoss to be started at boot
+#  service: 
+#    name: jboss 
+#    enabled: yes 
+#    state: started
 
 - name: deploy iptables rules
   template: 
