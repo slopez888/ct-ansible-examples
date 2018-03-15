@@ -60,6 +60,7 @@
     path: /var/run/jboss-as/jboss-as-standalone.pid
     owner: jboss 
     group: jboss 
+    directory: no
     recurse: yes
 
 - name: Workaround for systemd bug
