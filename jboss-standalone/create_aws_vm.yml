@@ -37,11 +37,12 @@
       name: "{{ item.public_dns_name }}"
       ansible_host: "{{ item.public_dns_name }}"
       ansible_user: ec2-user
+      groups: new-hosts
     with_items:
       - "{{ ec2.instances }}"
 
 - name: Apply Updates and Config Changes to Instances
-  hosts: all
+  hosts: new-hosts
   tasks:
 
   - name: Apply Yum Updates
