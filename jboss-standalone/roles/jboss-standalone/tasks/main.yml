@@ -15,7 +15,7 @@
         var: uptime_result.stdout
 
     - name: Reboot Servers
-      command: shutdown -r +1 --no-wall "Ansible Updates Triggered" 
+      command: shutdown -r +1 "Ansible Updates Triggered" 
       become: true
       async: 0
       poll: 0
