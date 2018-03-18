@@ -4,10 +4,11 @@
     name: "*"
     state: latest
 
+- name: Get System Uptime
+  command: uptime
+
 - name: Reboot Systems
   command: /usr/sbin/shutdown -r now
-  async: 0
-  poll: 0
 
 - name: Pause for 30 Seconds to reset existing control connection
   pause: seconds=30
@@ -20,6 +21,8 @@
     timeout: 320
     state: started
 
+- name: Get System Uptime Again to Validate Reboot
+  command: uptime
 
 - name: Install Java 1.7 and some basic dependencies
   yum: 
