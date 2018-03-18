@@ -67,9 +67,19 @@
     creates: /usr/share/jboss-as 
     copy: no 
 
-  # Rename the dir to avoid encoding the version in the init script
-- name: Rename install directory
-  command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
+- name: Rename install directory to avoid encoding the version in the init script
+  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as 
+
+- name: Download updated jboss-modules.jar to fix null pointer exception error
+  get_url: 
+    url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
+    dest: /usr/share/jboss-as
+
+- name: Backup Broken jboss-modules.jar just because
+  command: /bin/mv /usr/share/jboss-as/jboss-modules.jar /usr/share/jboss-as/jboss-modules.jar.broken 
+
+- name: Install fixed jboss-modules-1.1.5.GA.jar 
+  command: /bin/mv /usr/share/jboss-as/jboss-modules-1.1.5.GA.jar /usr/share/jboss-as/jboss-modules.jar
 
 - name: Installing  standalone.xml Template configuration file
   template: 
