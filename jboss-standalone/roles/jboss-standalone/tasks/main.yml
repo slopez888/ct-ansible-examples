@@ -165,6 +165,16 @@
     enabled: yes 
     state: restarted
 
+- name: wait for jboss to restart
+  wait_for:
+    port: {{ http_port }}
+    host: "{{ inventory_hostname }}"
+    state: started
+    delay: 80
+    timeout: 200
+  become: false
+  delegate_to: localhost
+
 - name: Use URI module to Validate JBOSS Service is running
   uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}"
