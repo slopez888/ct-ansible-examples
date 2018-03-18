@@ -19,6 +19,7 @@
     dest: /usr/share 
     src: /opt/jboss-as-7.1.1.Final.zip 
     copy: no 
+    creates: /usr/share/jboss-as-7.1.1.Final
 
 - name: Add group "jboss"
   group: 
