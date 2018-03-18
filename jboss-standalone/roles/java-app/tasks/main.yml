@@ -18,11 +18,11 @@
 
 - name: Use URI module to Validate Hello World Application is running
   uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld/HelloWorld"
     return_content: yes
   register: webpage
 
-- name: Fail if "Hello World" is not in the output
+- name: Fail if "Hello World!" is not in the output
   fail:
   when: "'Hello World!' not in webpage.content"
   
