@@ -1,19 +1,19 @@
 ---
-- name: Block to Apply Updates and Reboot
-    block:
+- name: Apply Updates and Reboot
+  block:
     - name: Apply Yum Updates
       yum:
         name: "*"
         state: latest
       register: updates_result
-
+  
     - name: Get System Uptime
       command: uptime
       register: uptime_result
-
+  
     - debug:
         var: uptime_result.stdout
-
+  
     - name: Reboot Servers
       command: shutdown -r +1 "Ansible Updates Triggered"
       become: true
