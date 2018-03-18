@@ -1,11 +1,11 @@
 ---
-- name: JBOSS_STANDALONE - Install Java 1.8 and some basic dependencies
+- name: JBOSS_STANDALONE - Install Java 1.7 and some basic dependencies
   yum: 
     name: "{{ item }}"
     state: latest
   with_items:
    - unzip
-   - java-1.8.0-openjdk
+   - java-1.7.0-openjdk
    - libselinux-python
    - libsemanage-python
 
