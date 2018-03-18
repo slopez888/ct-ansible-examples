@@ -60,11 +60,6 @@
     creates: /usr/share/jboss-as 
     copy: no 
 
-  # Rename the dir to avoid encoding the version in the init script
-#- name: Rename install directory
-#  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
-  #command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
-
 - name: Installing  standalone.xml Template configuration file
   template: 
     src: standalone.xml 
@@ -122,6 +117,8 @@
 
     - name: Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
+   
+    #RECENTLY BROKEN systemctl managemet of jboss.  some update broke it?
     
     - name: Fix jboss-as.conf issues - create /etc/jboss-as
       file: 
