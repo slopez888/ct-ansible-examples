@@ -80,7 +80,7 @@
       service:
         name: jboss 
         enabled: yes 
-        state: started
+        state: restarted
 
 #    - name: RHEL6- Validate JBOSS service started
 #      command: service jboss status
@@ -126,7 +126,7 @@
       service: 
         name: jboss 
         enabled: yes 
-        state: started
+        state: restarted
 
 #    - name: RHEL7+ Validate JBOSS service started
 #      command: systemctl status jboss
