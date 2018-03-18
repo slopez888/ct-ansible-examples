@@ -87,47 +87,47 @@
 - name: Fix SELINUX Context of /usr/share/jboss-as
   command: restorecon -RF /usr/share/jboss-as
 
-- name: Perform Specific Configurations for RHEL6 and Below
+- name: RHEL6- Perform Specific Configurations
   block:
-    - name: Copy the init script
+    - name: RHEL6- Copy the init script
       copy: 
         src: jboss-as-standalone.sh 
         dest: /etc/init.d/jboss 
         mode: 0755
 
-    - name: Fix SELINUX Contexts /etc/init.d/jboss
+    - name: RHEL6- Fix SELINUX Contexts /etc/init.d/jboss
       command: restorecon -RF /etc/init.d/jboss
 
-    - name: Enable and Start JBoss with chkconfig and service - RHEL6 and below
+    - name: RHEL6- Enable and Start JBoss with chkconfig and service
       shell: service jboss start && chkconfig jboss on
 
-    - name: deploy iptables rules
+    - name: RHEL6- deploy iptables rules
       template: 
         src: iptables-save 
         dest: /etc/sysconfig/iptables
       notify: restart iptables
   when: ansible_distribution_major_version < "7" 
 
-- name: Perform Specific Configurations for RHEL7 and above
+- name: RHEL7+ Perform Specific Configurations
   block:
-    - name: Configure the init script for systemd
+    - name: RHEL7+ Configure the init script for systemd
       template: 
         src: jboss.systemd
         dest: /etc/systemd/system/jboss.service
 
-    - name: Fix SELINUX Contexts /etc/systemd/system/jboss.service
+    - name: RHEL7+ Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
    
     #RECENTLY BROKEN systemctl managemet of jboss.  some update broke it?
     
-    - name: Fix jboss-as.conf issues - create /etc/jboss-as
+    - name: RHEL7+ Fix jboss-as.conf issues - create /etc/jboss-as
       file: 
         dest: /etc/jboss-as
         owner: jboss
         group: jboss
         state: directory
 
-    - name: Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
+    - name: RHEL7+ Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
       file:
         src: /usr/share/jboss-as/bin/init.d/jboss-as.conf
         dest: /etc/jboss-as/jboss-as.conf
@@ -135,23 +135,23 @@
         group: jboss
         state: link
 
-    - name: Enable and Start JBoss with systemctl - RHEL7 and above
+    - name: RHEL7+ Enable and Start JBoss with systemctl - RHEL7 and above
       service: 
         name: jboss 
         enabled: yes 
         state: started
 
-    - name: Ensure that firewalld is installed
+    - name: RHEL7+ Ensure that firewalld is installed
       yum: 
         name: firewalld 
         state: present
 
-    - name: Ensure that firewalld is started
+    - name: RHEL7+ Ensure that firewalld is started
       service: 
         name: firewalld 
         state: started
 
-    - name: deploy firewalld rules
+    - name: RHEL7+ deploy firewalld rules
       firewalld: 
         immediate: yes 
         port: "{{ item }}" 
