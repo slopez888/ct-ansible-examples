@@ -95,7 +95,7 @@
     dest: /etc/init.d/jboss 
     mode: 0755
 
-- name: Fix SELINUX
+- name: Fix SELINUX Contexts
   command: restorecon -RF /etc/init.d /usr/share/jboss-as
 
 - name: Workaround for systemd bug
