@@ -14,40 +14,11 @@
     url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip 
     dest: /opt/jboss-as-7.1.1.Final.zip
 
-#- name: Cleanup previous /usr/share/jboss-as tree
-#  file: 
-#    path: /usr/share/jboss-as/ 
-#    owner: jboss 
-#    group: jboss 
-#    state: absent 
-
 - name: Extract archive
   unarchive: 
     dest: /usr/share 
     src: /opt/jboss-as-7.1.1.Final.zip 
-    creates: /usr/share/jboss-as 
     copy: no 
-
-- name: symbolically link install directory to avoid encoding the version in the init script
-  file:
-    src: /usr/share/jboss-as-7.1.1.Final
-    dest: /usr/share/jboss-as
-    owner: jboss
-    group: jboss
-    state: link
-
-- name: Download updated jboss-modules.jar to fix null pointer exception error
-  get_url: 
-    url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
-    dest: /usr/share/jboss-as/jboss-modules.jar
-    force: yes
-    backup: yes
-
-- name: Installing  standalone.xml Template configuration file
-  template: 
-    src: standalone.xml 
-    dest: /usr/share/jboss-as/standalone/configuration/
-  notify: restart jboss
 
 - name: Add group "jboss"
   group: 
@@ -61,14 +32,35 @@
 
 - name: Change ownership of JBoss installation
   file: 
-    path: /usr/share/jboss-as/ 
+    path: /usr/share/jboss-as-7.1.1.Final
     owner: jboss 
     group: jboss 
     state: directory 
     recurse: yes
 
-- name: Fix SELINUX Context of /usr/share/jboss-as
-  command: restorecon -RF /usr/share/jboss-as
+- name: symbolically link install directory to avoid encoding the version in the init script
+  file:
+    src: /usr/share/jboss-as-7.1.1.Final
+    dest: /usr/share/jboss-as
+    owner: jboss
+    group: jboss
+    state: link
+
+- name: Download updated jboss-modules.jar to fix null pointer exception error
+  get_url: 
+    url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
+    dest: /usr/share/jboss-as-7.1.1.Final/jboss-modules.jar
+    force: yes
+    backup: yes
+
+- name: Installing  standalone.xml Template configuration file
+  template: 
+    src: standalone.xml 
+    dest: /usr/share/jboss-as/standalone/configuration/
+  notify: restart jboss
+
+- name: Reset SELINUX Context of /usr/share/jboss-as-7.1.1.Final and /usr/share/jboss-as
+  command: restorecon -RF /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
 
 - name: RHEL6- Perform Specific Configurations
   block:
