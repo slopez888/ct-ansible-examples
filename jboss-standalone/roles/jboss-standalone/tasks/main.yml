@@ -122,7 +122,7 @@
         group: jboss
         state: link
 
-    - name: RHEL7+ Enable and Start JBoss with systemctl - RHEL7 and above
+    - name: RHEL7+ Enable and Start JBoss with systemctl
       service: 
         name: jboss 
         enabled: yes 
