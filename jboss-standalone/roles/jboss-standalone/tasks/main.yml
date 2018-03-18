@@ -58,6 +58,8 @@
   template: 
     src: standalone.xml 
     dest: /usr/share/jboss-as/standalone/configuration/
+    owner: jboss
+    group: jboss
   notify: restart jboss
 
 - name: Reset SELINUX Context of /usr/share/jboss-as-7.1.1.Final and /usr/share/jboss-as
