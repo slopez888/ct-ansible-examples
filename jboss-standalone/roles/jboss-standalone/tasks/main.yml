@@ -79,14 +79,14 @@
         enabled: yes 
         state: restarted
 
-    - name: RHEL6- Validate JBOSS service started
-      command: service jboss status
-      register: jboss_service_result
-      ignore_warnings: yes
+#    - name: RHEL6- Validate JBOSS service started
+#      command: service jboss status
+#      register: jboss_service_result
+#      ignore_warnings: yes
 
-    - name: RHEL6- Display jboss service status results
-      debug:
-        var: jboss_service_result.stdout
+#    - name: RHEL6- Display jboss service status results
+#      debug:
+#        var: jboss_service_result.stdout
 
     - name: RHEL6- deploy iptables rules
       template: 
@@ -163,5 +163,5 @@
 
 - name: Fail if "Your JBoss Application Server 7 is running" is not in the output
   fail:
-  when: "'Your JBoss Application Server 7 is not running' not in webpage.content"
+  when: "'Your JBoss Application Server 7 is running' not in webpage.content"
 ...
