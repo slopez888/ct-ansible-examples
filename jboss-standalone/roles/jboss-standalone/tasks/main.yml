@@ -170,8 +170,8 @@
     port: "{{ http_port }}"
     host: "{{ inventory_hostname }}"
     state: started
-    delay: 80
-    timeout: 200
+    delay: 30
+    timeout: 120
   become: false
   delegate_to: localhost
 
