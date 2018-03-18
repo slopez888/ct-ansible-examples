@@ -167,7 +167,7 @@
 
 - name: wait for jboss to restart
   wait_for:
-    port: {{ http_port }}
+    port: "{{ http_port }}"
     host: "{{ inventory_hostname }}"
     state: started
     delay: 80
