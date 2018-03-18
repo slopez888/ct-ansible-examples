@@ -50,20 +50,20 @@
 
 - name: Download JBoss from jboss.org
   get_url: 
-    url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.3.Final/jboss-as-7.1.3.Final.zip 
-    dest: /opt/jboss-as-7.1.3.Final.zip
+    url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip 
+    dest: /opt/jboss-as-7.1.1.Final.zip
 
 - name: Extract archive
   unarchive: 
     dest: /usr/share 
-    src: /opt/jboss-as-7.1.3.Final.zip 
+    src: /opt/jboss-as-7.1.1.Final.zip 
     creates: /usr/share/jboss-as 
     copy: no 
 
   # Rename the dir to avoid encoding the version in the init script
 - name: Rename install directory
-  command: /bin/mv /usr/share/jboss-as-7.1.3.Final /usr/share/jboss-as
-  #command: chdir=/usr/share /bin/mv jboss-as-7.1.3.Final jboss-as creates=/usr/share/jboss-as
+  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
+  #command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
 
 - name: Copying standalone.xml configuration file
   template: 
