@@ -10,7 +10,6 @@
 
 - debug:
     var: uptime_result
-    verbosity: 2
 
 - name: Reboot Systems
   shell: /usr/sbin/shutdown -r now
@@ -36,7 +35,6 @@
 
 - debug:
     var: uptime_result
-    verbosity: 2
 
 - name: Install Java 1.7 and some basic dependencies
   yum: 
