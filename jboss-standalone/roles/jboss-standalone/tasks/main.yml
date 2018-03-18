@@ -89,17 +89,20 @@
     state: directory 
     recurse: yes
 
-- name: Copy the init script
-  copy: 
-    src: jboss-as-standalone.sh 
-    dest: /etc/init.d/jboss 
-    mode: 0755
-
-- name: Fix SELINUX Contexts
-  command: restorecon -RF /etc/init.d /usr/share/jboss-as
+- name: Fix SELINUX Context of /usr/share/jboss-as
+  command: restorecon -RF /usr/share/jboss-as
 
 - name: Perform Specific Configurations for RHEL6 and Below
   block:
+    - name: Copy the init script
+      copy: 
+        src: jboss-as-standalone.sh 
+        dest: /etc/init.d/jboss 
+        mode: 0755
+
+    - name: Fix SELINUX Contexts /etc/init.d/jboss
+      command: restorecon -RF /etc/init.d/jboss
+
     - name: Enable and Start JBoss with chkconfig and service - RHEL6 and below
       shell: service jboss start && chkconfig jboss on
 
@@ -112,6 +115,14 @@
 
 - name: Perform Specific Configurations for RHEL7 and above
   block:
+    - name: Configure the init script for systemd
+      template: 
+        src: jboss.systemd
+        dest: /etc/systemd/system/jboss.service
+
+    - name: Fix SELINUX Contexts /etc/systemd/system/jboss.service
+      command: restorecon -RF /etc/systemd/system/jboss.service
+
     - name: Enable and Start JBoss with systemctl - RHEL7 and above
       service: 
         name: jboss 
