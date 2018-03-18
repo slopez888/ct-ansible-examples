@@ -42,7 +42,6 @@
 
 - name: Apply Updates and Config Changes to Instances
   hosts: all
-  gather_facts: false
   tasks:
 
   - name: Apply Yum Updates
