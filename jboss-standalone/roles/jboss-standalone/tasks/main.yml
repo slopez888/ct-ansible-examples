@@ -5,17 +5,24 @@
     state: latest
 
 - name: Get System Uptime
-  shell: uptime
-  verbosity: 2
+  command: uptime
+  register: uptime_result
+
+- debug:
+    var: uptime_result
+    verbosity: 2
 
 - name: Reboot Systems
   shell: /usr/sbin/shutdown -r now
+  async: 0
+  poll: 0
 
 - name: Pause for 30 Seconds to reset existing control connection
   pause:
     seconds: 30
 
 - name: Wait for SSH to come up
+  connection: local
   wait_for:
     host: "{{ ansible_ssh_host }}"
     port: 22
@@ -25,7 +32,11 @@
 
 - name: Get System Uptime Again to Validate Reboot
   shell: uptime
-  verbosity: 2
+  register: uptime_result
+
+- debug:
+    var: uptime_result
+    verbosity: 2
 
 - name: Install Java 1.7 and some basic dependencies
   yum: 
