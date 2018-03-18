@@ -3,6 +3,7 @@
   yum:
     name: "*"
     state: latest
+    register: updates_result
 
 - name: Get System Uptime
   command: uptime
@@ -11,23 +12,24 @@
 - debug:
     var: uptime_result
 
-- name: Reboot Systems
-  shell: /usr/sbin/shutdown -r now
+- name: Reboot Servers
+  command: shutdown -r +1 "Ansible Updates Triggered"
   async: 0
   poll: 0
+  ignore_errors: true
+  delegate_to: localhost
+#  when: updates_result.changed
 
-- name: Pause for 30 Seconds to reset existing control connection
-  pause:
-    seconds: 30
-
-- name: Wait for SSH to come up
-  connection: local
+- name: wait for webservers to reboot
   wait_for:
-    host: "{{ ansible_ssh_host }}"
     port: 22
-    delay: 60
-    timeout: 320
+    host: "{{ inventory_hostname }}"
     state: started
+    delay: 80
+    timeout: 200
+  become: false
+  delegate_to: localhost
+#  when: updates_result.changed
 
 - name: Get System Uptime Again to Validate Reboot
   shell: uptime
