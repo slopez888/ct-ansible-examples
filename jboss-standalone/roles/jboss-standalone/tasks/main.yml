@@ -2,7 +2,6 @@
 - name: Block to Apply Updates and Reboot
   block:
   - name: Apply Yum Updates
-    become: true
     yum:
       name: "*"
       state: latest
