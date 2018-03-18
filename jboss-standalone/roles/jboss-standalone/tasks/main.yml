@@ -1,25 +1,25 @@
 ---
-- name: Install Java 1.7 and some basic dependencies
+- name: Install Java {{JAVA_VERSION}}  and some basic dependencies
   yum: 
     name: "{{ item }}"
     state: latest
   with_items:
    - unzip
-   - java-1.7.0-openjdk
+   - java-{{JAVA_VERSION}}.0-openjdk
    - libselinux-python
    - libsemanage-python
 
 - name: Download JBoss from jboss.org
   get_url: 
-    url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip 
-    dest: /opt/jboss-as-7.1.1.Final.zip
+    url: http://download.jboss.org/jbossas/7.1/jboss-as-{{JBOSS_AS_RELEASE}}/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
+    dest: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip
 
 - name: Extract archive
   unarchive: 
     dest: /usr/share 
-    src: /opt/jboss-as-7.1.1.Final.zip 
+    src: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
     copy: no 
-    creates: /usr/share/jboss-as-7.1.1.Final
+    creates: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
 
 - name: Add group "jboss"
   group: 
@@ -29,11 +29,11 @@
   user: 
     name: jboss 
     group: jboss 
-    home: /usr/share/jboss-as
+    home: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
 
 - name: Change ownership of JBoss installation
   file: 
-    path: /usr/share/jboss-as-7.1.1.Final
+    path: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
     owner: jboss 
     group: jboss 
     state: directory 
@@ -41,7 +41,7 @@
 
 - name: symbolically link install directory to avoid encoding the version in the init script
   file:
-    src: /usr/share/jboss-as-7.1.1.Final
+    src: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
     dest: /usr/share/jboss-as
     owner: jboss
     group: jboss
@@ -50,7 +50,7 @@
 - name: Download updated jboss-modules.jar to fix null pointer exception error
   get_url: 
     url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
-    dest: /usr/share/jboss-as-7.1.1.Final/jboss-modules.jar
+    dest: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}/jboss-modules.jar
     force: yes
     backup: yes
 
@@ -62,8 +62,8 @@
     group: jboss
   notify: restart jboss
 
-- name: Reset SELINUX Context of /usr/share/jboss-as-7.1.1.Final and /usr/share/jboss-as
-  command: restorecon -RF /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
+- name: Reset SELINUX Context of /usr/share/jboss-as-{{JBOSS_AS_RELEASE}} and /usr/share/jboss-as
+  command: restorecon -RF /usr/share/jboss-as-{{JBOSS_AS_RELEASE}} /usr/share/jboss-as
 
 - name: RHEL6- Perform Specific Configurations
   block:
