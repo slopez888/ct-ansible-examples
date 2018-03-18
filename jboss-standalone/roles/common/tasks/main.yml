@@ -1,35 +1,35 @@
 ---
-- name: COMMON - Apply Yum Updates
+- name: Apply Yum Updates
   yum:
     name: "*"
     state: latest
   register: updates_result
   
-- name: COMMON - Reboot Systems if Necessary
+- name: Reboot Systems if Necessary
   block:
-    - name: COMMON - Get System Uptime
+    - name: Get System Uptime
       command: uptime
       register: uptime_result
 
-    - name: COMMON - show uptime command results
+    - name: show uptime command results
       debug:
         var: uptime_result.stdout
 
-    - name: COMMON - Reboot RHEL6- Servers 
+    - name: Reboot RHEL6- Servers 
       command: shutdown -r +1 "Ansible Updates Triggered" 
       become: true
       async: 0
       poll: 0
       when: ansible_distribution_major_version < "7" 
 
-    - name: COMMON - Reboot RHEL7+ Servers 
+    - name: Reboot RHEL7+ Servers 
       command: shutdown -r +1 --no-wall "Ansible Updates Triggered" 
       become: true
       async: 0
       poll: 0
       when: ansible_distribution_major_version >= "7" 
 
-    - name: COMMON - wait for webservers to reboot
+    - name: wait for webservers to reboot
       wait_for:
         port: 22
         host: "{{ inventory_hostname }}"
@@ -40,11 +40,11 @@
       delegate_to: localhost
   when: updates_result.changed
 
-- name: COMMON - Get System Uptime Again to Validate Reboot or Not
+- name: Get System Uptime Again to Validate Reboot or Not
   shell: uptime
   register: uptime_result
 
-- name: COMMON - show uptime command results
+- name: show uptime command results
   debug:
     var: uptime_result.stdout
 
