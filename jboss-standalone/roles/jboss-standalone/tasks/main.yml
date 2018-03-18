@@ -156,13 +156,13 @@
       - "{{ https_port }}/tcp"
   when: ansible_distribution_major_version >= "7"
 
-#- name: Use URI module to Validate JBOSS Service is running
-#  uri:
-#    url: "http://{{ ansible_ssh_host }}:{{ http_port }}"
-#    return_content: yes
-#  register: webpage
+- name: Use URI module to Validate JBOSS Service is running
+  uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}"
+    return_content: yes
+  register: webpage
 
-#- name: Fail if "Your JBoss Application Server 7 is running" is not in the output
-#  fail:
-#  when: "'Your JBoss Application Server 7 is running' not in webpage.content"
+- name: Fail if "Your JBoss Application Server 7 is running" is not in the output
+  fail:
+  when: "'Your JBoss Application Server 7 is running' not in webpage.content"
 ...

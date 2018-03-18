@@ -15,6 +15,16 @@
     src: /var/tmp/jboss-helloworld.war 
     deployment: helloworld.war
     state: present
+
+- name: Use URI module to Validate Hello World Application is running
+  uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld"
+    return_content: yes
+  register: webpage
+
+- name: Fail if "Hello World" is not in the output
+  fail:
+  when: "'Hello World!' not in webpage.content"
   
 - name: Deploy Ticket Monster to JBoss
   jboss: 
@@ -22,5 +32,15 @@
     src: /var/tmp/ticket-monster.war 
     deployment: ticket-monster.war
     state: present
+
+- name: Use URI module to Validate Ticket Monster Application is running
+  uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster"
+    return_content: yes
+  register: webpage
+
+- name: Fail if "TicketMonster" is not in the output
+  fail:
+  when: "'TicketMonster' not in webpage.content"
 
 ...
