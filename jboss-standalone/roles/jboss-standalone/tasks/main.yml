@@ -19,14 +19,14 @@
       become: true
       async: 0
       poll: 0
-    when: ansible_distribution_major_version < "7" 
+      when: ansible_distribution_major_version < "7" 
 
     - name: Reboot RHEL7+ Servers 
       command: shutdown -r +1 --no-wall "Ansible Updates Triggered" 
       become: true
       async: 0
       poll: 0
-    when: ansible_distribution_major_version >= "7" 
+      when: ansible_distribution_major_version >= "7" 
 
     - name: wait for webservers to reboot
       wait_for:
