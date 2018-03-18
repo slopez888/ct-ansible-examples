@@ -98,11 +98,11 @@
 - name: Fix SELINUX Contexts
   command: restorecon -RF /etc/init.d /usr/share/jboss-as
 
-- name: Enable and Start JBoss with chkconfig and service
+- name: Enable and Start JBoss with chkconfig and service - RHEL6 and below
   shell: service jboss start && chkconfig jboss on
   when: ansible_distribution_major_version < "7" 
 
-- name: Enable and Start JBoss with systemctl
+- name: Enable and Start JBoss with systemctl - RHEL7 and above
   service: 
     name: jboss 
     enabled: yes 
