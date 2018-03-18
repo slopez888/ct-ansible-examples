@@ -61,8 +61,8 @@
     copy: no 
 
   # Rename the dir to avoid encoding the version in the init script
-- name: Rename install directory
-  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
+#- name: Rename install directory
+#  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
   #command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
 
 - name: Copying standalone.xml configuration file
@@ -94,6 +94,9 @@
     src: jboss-as-standalone.sh 
     dest: /etc/init.d/jboss 
     mode: 0755
+
+- name: Fix SELINUX
+  command: restorecon -RF /etc/init.d /usr/share/jboss-as
 
 - name: Workaround for systemd bug
   shell: service jboss start && chkconfig jboss on
