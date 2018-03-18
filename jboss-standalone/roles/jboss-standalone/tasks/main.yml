@@ -9,6 +9,9 @@
   async: 0
   poll: 0
 
+- name: Pause for 30 Seconds to reset existing control connection
+  pause: seconds=30
+
 - name: Wait for SSH to come up
   wait_for:
     host: "{{ ansible_ssh_host }}"
