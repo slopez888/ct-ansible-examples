@@ -1,11 +1,11 @@
 ---
-- name: Install Java {{JAVA_VERSION}}  and some basic dependencies
+- name: Install Java {{OPENJDK_VERSION}}  and some basic dependencies
   yum: 
     name: "{{ item }}"
     state: latest
   with_items:
    - unzip
-   - java-{{JAVA_VERSION}}.0-openjdk
+   - java-{{OPENJDK_VERSION}}-openjdk
    - libselinux-python
    - libsemanage-python
 
