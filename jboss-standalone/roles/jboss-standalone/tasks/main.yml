@@ -132,6 +132,13 @@
         enabled: yes 
         state: started
 
+    - name: RHEL6- Validate JBOSS service started
+      command: service jboss status
+      register: jboss_service_result
+
+    - debug:
+        var: jboss_service_result..stdout
+
     - name: RHEL6- deploy iptables rules
       template: 
         src: iptables-save 
@@ -169,6 +176,13 @@
         name: jboss 
         enabled: yes 
         state: started
+
+    - name: RHEL7+ Validate JBOSS service started
+      command: systemctl status jboss
+      register: jboss_service_result
+
+    - debug:
+        var: jboss_service_result..stdout
 
     - name: RHEL7+ Ensure that firewalld is installed
       yum: 
