@@ -19,8 +19,7 @@
       become: true
       async: 0
       poll: 0
-      ignore_errors: true
-      delegate_to: localhost
+#      ignore_errors: true
 
     - name: wait for webservers to reboot
       wait_for:
