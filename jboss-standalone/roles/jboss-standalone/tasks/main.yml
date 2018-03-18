@@ -109,8 +109,14 @@
     - name: RHEL6- Fix SELINUX Contexts /etc/init.d/jboss
       command: restorecon -RF /etc/init.d/jboss
 
-    - name: RHEL6- Enable and Start JBoss with chkconfig and service
+    - name: RHEL6- Enable and Start JBoss with chkconfig and service commands
       shell: service jboss start && chkconfig jboss on
+
+    - name: RHEL6- Enable and Start JBoss with service module
+      service:
+        name: jboss 
+        enabled: yes 
+        state: started
 
     - name: RHEL6- deploy iptables rules
       template: 
