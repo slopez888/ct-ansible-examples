@@ -39,8 +39,8 @@
     return_content: yes
   register: webpage
 
-- name: Fail if "TicketMonster" is not in the output
+- name: Fail if "Ticket Monster" is not in the output
   fail:
-  when: "'TicketMonster' not in webpage.content"
+  when: "'Ticket Monster' not in webpage.content"
 
 ...
