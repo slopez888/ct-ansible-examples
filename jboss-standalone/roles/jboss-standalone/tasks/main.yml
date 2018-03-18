@@ -35,8 +35,6 @@
     owner: jboss
     group: jboss
     state: link
-    creates: /usr/share/jboss-as
-
 
 - name: Download updated jboss-modules.jar to fix null pointer exception error
   get_url: 
