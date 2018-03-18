@@ -1,5 +1,5 @@
 ---
-- name: Install Java {{OPENJDK_VERSION}}  and some basic dependencies
+- name: Install Java OpenJDK {{OPENJDK_VERSION}} and some basic dependencies
   yum: 
     name: "{{ item }}"
     state: latest
@@ -29,7 +29,8 @@
   user: 
     name: jboss 
     group: jboss 
-    home: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
+    home: /home/jboss-as
+    #home: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
 
 - name: Change ownership of JBoss installation
   file: 
