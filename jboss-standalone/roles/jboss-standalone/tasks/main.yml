@@ -1,8 +1,8 @@
 ---
 - name: Block to Apply Updates and Reboot
   block:
-  become: true
   - name: Apply Yum Updates
+    become: true
     yum:
       name: "*"
       state: latest
@@ -17,6 +17,7 @@
 
   - name: Reboot Servers
     command: shutdown -r +1 "Ansible Updates Triggered"
+    become: true
     async: 0
     poll: 0
     ignore_errors: true
