@@ -1,5 +1,5 @@
 ---
-- name: Install Java 1.8 and some basic dependencies
+- name: JBOSS_STANDALONE - Install Java 1.8 and some basic dependencies
   yum: 
     name: "{{ item }}"
     state: latest
@@ -9,52 +9,52 @@
    - libselinux-python
    - libsemanage-python
 
-- name: Download JBoss from jboss.org
+- name: JBOSS_STANDALONE - Download JBoss from jboss.org
   get_url: 
     url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip 
     dest: /opt/jboss-as-7.1.1.Final.zip
 
-- name: Cleanup previous /usr/share/jboss-as tree
+- name: JBOSS_STANDALONE - Cleanup previous /usr/share/jboss-as tree
   file: 
     path: /usr/share/jboss-as/ 
     owner: jboss 
     group: jboss 
     state: absent 
 
-- name: Extract archive
+- name: JBOSS_STANDALONE - Extract archive
   unarchive: 
     dest: /usr/share 
     src: /opt/jboss-as-7.1.1.Final.zip 
     creates: /usr/share/jboss-as 
     copy: no 
 
-- name: Rename install directory to avoid encoding the version in the init script
+- name: JBOSS_STANDALONE - Rename install directory to avoid encoding the version in the init script
   command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as 
 
-- name: Download updated jboss-modules.jar to fix null pointer exception error
+- name: JBOSS_STANDALONE - Download updated jboss-modules.jar to fix null pointer exception error
   get_url: 
     url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
     dest: /usr/share/jboss-as/jboss-modules.jar
     force: yes
     backup: yes
 
-- name: Installing  standalone.xml Template configuration file
+- name: JBOSS_STANDALONE - Installing  standalone.xml Template configuration file
   template: 
     src: standalone.xml 
     dest: /usr/share/jboss-as/standalone/configuration/
   notify: restart jboss
 
-- name: Add group "jboss"
+- name: JBOSS_STANDALONE - Add group "jboss"
   group: 
     name: jboss
 
-- name: Add user "jboss"
+- name: JBOSS_STANDALONE - Add user "jboss"
   user: 
     name: jboss 
     group: jboss 
     home: /usr/share/jboss-as
 
-- name: Change ownership of JBoss installation
+- name: JBOSS_STANDALONE - Change ownership of JBoss installation
   file: 
     path: /usr/share/jboss-as/ 
     owner: jboss 
@@ -62,37 +62,38 @@
     state: directory 
     recurse: yes
 
-- name: Fix SELINUX Context of /usr/share/jboss-as
+- name: JBOSS_STANDALONE - Fix SELINUX Context of /usr/share/jboss-as
   command: restorecon -RF /usr/share/jboss-as
 
-- name: RHEL6- Perform Specific Configurations
+- name: JBOSS_STANDALONE - RHEL6- Perform Specific Configurations
   block:
-    - name: RHEL6- Copy the init script
+    - name: JBOSS_STANDALONE - RHEL6- Copy the init script
       copy: 
         src: jboss-as-standalone.sh 
         dest: /etc/init.d/jboss 
         mode: 0755
 
-    - name: RHEL6- Fix SELINUX Contexts /etc/init.d/jboss
+    - name: JBOSS_STANDALONE - RHEL6- Fix SELINUX Contexts /etc/init.d/jboss
       command: restorecon -RF /etc/init.d/jboss
 
-    #- name: RHEL6- Enable and Start JBoss with chkconfig and service commands
+    #- name: JBOSS_STANDALONE - RHEL6- Enable and Start JBoss with chkconfig and service commands
     #  shell: service jboss start && chkconfig jboss on
 
-    - name: RHEL6- Enable and Start JBoss with service module
+    - name: JBOSS_STANDALONE - RHEL6- Enable and Start JBoss with service module
       service:
         name: jboss 
         enabled: yes 
         state: started
 
-    - name: RHEL6- Validate JBOSS service started
+    - name: JBOSS_STANDALONE - RHEL6- Validate JBOSS service started
       command: service jboss status
       register: jboss_service_result
 
-    - debug:
+    - name: JBOSS_STANDALONE - RHEL6- Display jboss service status results
+      debug:
         var: jboss_service_result.stdout
 
-    - name: RHEL6- deploy iptables rules
+    - name: JBOSS_STANDALONE - RHEL6- deploy iptables rules
       template: 
         src: iptables-save 
         dest: /etc/sysconfig/iptables
@@ -101,22 +102,22 @@
 
 - name: RHEL7+ Perform Specific Configurations
   block:
-    - name: RHEL7+ Configure the init script for systemd
+    - name: JBOSS_STANDALONE - RHEL7+ Configure the init script for systemd
       template: 
         src: jboss.systemd
         dest: /etc/systemd/system/jboss.service
 
-    - name: RHEL7+ Fix SELINUX Contexts /etc/systemd/system/jboss.service
+    - name: JBOSS_STANDALONE - RHEL7+ Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
    
-    - name: RHEL7+ Fix jboss-as.conf issues - create /etc/jboss-as
+    - name: JBOSS_STANDALONE - RHEL7+ Fix jboss-as.conf issues - create /etc/jboss-as
       file: 
         dest: /etc/jboss-as
         owner: jboss
         group: jboss
         state: directory
 
-    - name: RHEL7+ Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
+    - name: JBOSS_STANDALONE - RHEL7+ Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
       file:
         src: /usr/share/jboss-as/bin/init.d/jboss-as.conf
         dest: /etc/jboss-as/jboss-as.conf
@@ -124,30 +125,31 @@
         group: jboss
         state: link
 
-    - name: RHEL7+ Enable and Start JBoss with systemctl - RHEL7 and above
+    - name: JBOSS_STANDALONE - RHEL7+ Enable and Start JBoss with systemctl - RHEL7 and above
       service: 
         name: jboss 
         enabled: yes 
         state: started
 
-    - name: RHEL7+ Validate JBOSS service started
+    - name: JBOSS_STANDALONE - RHEL7+ Validate JBOSS service started
       command: systemctl status jboss
       register: jboss_service_result
 
-    - debug:
+    - name: JBOSS_STANDALONE - RHEL7+ Display jboss systemctl  status results
+      debug:
         var: jboss_service_result.stdout
 
-    - name: RHEL7+ Ensure that firewalld is installed
+    - name: JBOSS_STANDALONE - RHEL7+ Ensure that firewalld is installed
       yum: 
         name: firewalld 
         state: present
 
-    - name: RHEL7+ Ensure that firewalld is started
+    - name: JBOSS_STANDALONE - RHEL7+ Ensure that firewalld is started
       service: 
         name: firewalld 
         state: started
 
-    - name: RHEL7+ deploy firewalld rules
+    - name: JBOSS_STANDALONE - RHEL7+ deploy firewalld rules
       firewalld: 
         immediate: yes 
         port: "{{ item }}" 
