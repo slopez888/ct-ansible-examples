@@ -128,7 +128,7 @@
         dest: /etc/jboss-as
         owner: jboss
         group: jboss
-        directory: yes
+        state: directory
 
     - name: Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
       file:
