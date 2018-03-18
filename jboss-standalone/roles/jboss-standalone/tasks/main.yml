@@ -137,7 +137,7 @@
       register: jboss_service_result
 
     - debug:
-        var: jboss_service_result..stdout
+        var: jboss_service_result.stdout
 
     - name: RHEL6- deploy iptables rules
       template: 
@@ -182,7 +182,7 @@
       register: jboss_service_result
 
     - debug:
-        var: jboss_service_result..stdout
+        var: jboss_service_result.stdout
 
     - name: RHEL7+ Ensure that firewalld is installed
       yum: 
