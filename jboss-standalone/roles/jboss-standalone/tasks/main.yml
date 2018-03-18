@@ -14,12 +14,12 @@
     url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip 
     dest: /opt/jboss-as-7.1.1.Final.zip
 
-- name: Cleanup previous /usr/share/jboss-as tree
-  file: 
-    path: /usr/share/jboss-as/ 
-    owner: jboss 
-    group: jboss 
-    state: absent 
+#- name: Cleanup previous /usr/share/jboss-as tree
+#  file: 
+#    path: /usr/share/jboss-as/ 
+#    owner: jboss 
+#    group: jboss 
+#    state: absent 
 
 - name: Extract archive
   unarchive: 
@@ -28,8 +28,15 @@
     creates: /usr/share/jboss-as 
     copy: no 
 
-- name: Rename install directory to avoid encoding the version in the init script
-  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as 
+- name: symbolically link install directory to avoid encoding the version in the init script
+  file:
+    src: /usr/share/jboss-as-7.1.1.Final
+    dest: /usr/share/jboss-as
+    owner: jboss
+    group: jboss
+    state: link
+    creates: /usr/share/jboss-as
+
 
 - name: Download updated jboss-modules.jar to fix null pointer exception error
   get_url: 
