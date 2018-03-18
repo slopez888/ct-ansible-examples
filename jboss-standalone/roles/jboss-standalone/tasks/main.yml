@@ -15,11 +15,10 @@
         var: uptime_result.stdout
 
     - name: Reboot Servers
-      command: shutdown -r +1 "Ansible Updates Triggered"
+      command: shutdown -r +1 --no-wall "Ansible Updates Triggered" 
       become: true
       async: 0
       poll: 0
-#      ignore_errors: true
 
     - name: wait for webservers to reboot
       wait_for:
@@ -42,7 +41,7 @@
 - name: Install Java 1.7 and some basic dependencies
   yum: 
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items:
    - unzip
    - java-1.7.0-openjdk
@@ -98,33 +97,33 @@
 - name: Workaround for systemd bug
   shell: service jboss start && chkconfig jboss on
   ignore_errors: yes
-  when: ansible_distribution_major_version != "7" 
+  when: ansible_distribution_major_version < "7" 
 
 - name: Enable JBoss to be started at boot
   service: 
     name: jboss 
     enabled: yes 
     state: started
-  when: ansible_distribution_major_version == "7" 
+  when: ansible_distribution_major_version >= "7" 
 
 - name: deploy iptables rules
   template: 
     src: iptables-save 
     dest: /etc/sysconfig/iptables
-  when: ansible_distribution_major_version != "7" 
+  when: ansible_distribution_major_version < "7" 
   notify: restart iptables
 
 - name: Ensure that firewalld is installed
   yum: 
     name: firewalld 
     state: present
-  when: ansible_distribution_major_version == "7" 
+  when: ansible_distribution_major_version >= "7" 
 
 - name: Ensure that firewalld is started
   service: 
     name: firewalld 
     state: started
-  when: ansible_distribution_major_version == "7" 
+  when: ansible_distribution_major_version >= "7" 
 
 - name: deploy firewalld rules
   firewalld: 
@@ -132,7 +131,7 @@
     port: "{{ item }}" 
     state: enabled 
     permanent: yes
-  when: ansible_distribution_major_version == "7"
+  when: ansible_distribution_major_version >= "7"
   with_items:
   - "{{ http_port }}/tcp"
   - "{{ https_port }}/tcp"
