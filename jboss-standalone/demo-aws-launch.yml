@@ -42,7 +42,9 @@
 
 - name: Apply Updates and Config Changes to Instances
   hosts: all
-  gather_facts: False
+  gather_facts: false
+  tasks:
+
   - name: Apply Yum Updates
     yum:
       name: "*"
@@ -54,11 +56,11 @@
       - name: Get System Uptime
         command: uptime
         register: uptime_result
-  
+
       - name: show uptime command results
         debug:
           var: uptime_result.stdout
-  
+
       - name: Reboot RHEL6- Servers 
         command: shutdown -r +1 "Ansible Updates Triggered" 
         become: true
@@ -72,7 +74,7 @@
         async: 0
         poll: 0
         when: ansible_distribution_major_version >= "7" 
-  
+
       - name: wait for Instances to reboot
         wait_for:
           port: 22
@@ -84,12 +86,12 @@
         delegate_to: localhost
     when: updates_result.changed
 
-- name: Get System Uptime Again to Validate Reboot or Not
-  shell: uptime
-  register: uptime_result
+  - name: Get System Uptime Again to Validate Reboot or Not
+    shell: uptime
+    register: uptime_result
 
-- name: show uptime command results
-  debug:
-    var: uptime_result.stdout
+  - name: show uptime command results
+    debug:
+      var: uptime_result.stdout
 
 ...
