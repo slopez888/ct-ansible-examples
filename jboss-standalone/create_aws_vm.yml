@@ -49,6 +49,7 @@
     yum:
       name: "*"
       state: latest
+    become: true
     register: updates_result
 
   - name: Reboot Systems if Necessary
