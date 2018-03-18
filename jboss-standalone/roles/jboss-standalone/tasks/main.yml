@@ -163,5 +163,5 @@
 
 - name: Fail if "Your JBoss Application Server 7 is running" is not in the output
   fail:
-  when: "'Your JBoss Application Server 7 is running' not in webpage.content"
+  when: "'Your JBoss Application Server 7 is not running' not in webpage.content"
 ...
