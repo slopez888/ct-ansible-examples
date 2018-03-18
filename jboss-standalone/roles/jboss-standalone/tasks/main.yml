@@ -123,13 +123,14 @@
     - name: Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
     
-    - name: Fix jboss-as.conf issues
+    - name: Fix jboss-as.conf issues - create /etc/jboss-as
       file: 
         dest: /etc/jboss-as
         owner: jboss
         group: jboss
         directory: yes
 
+    - name: Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
       file:
         src: /usr/share/jboss-as/bin/init.d/jboss-as.conf
         dest: /etc/jboss-as/jboss-as.conf
