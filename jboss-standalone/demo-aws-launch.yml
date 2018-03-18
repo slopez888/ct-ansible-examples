@@ -31,3 +31,11 @@
       timeout: 320 
       state: started
     with_items: "{{ ec2.instances }}"
+
+  - name: Apply Updates
+    yum:
+      name: "*"
+      state: latest
+
+  - name: Reboot Systems
+    command: /usr/sbin/shutdown -r now
