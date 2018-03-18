@@ -60,6 +60,13 @@
     creates: /usr/share/jboss-as 
     copy: no 
 
+- name: Cleanup previous /usr/share/jboss-as tree
+  file: 
+    path: /usr/share/jboss-as/ 
+    owner: jboss 
+    group: jboss 
+    state: absent 
+
   # Rename the dir to avoid encoding the version in the init script
 - name: Rename install directory
   command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
