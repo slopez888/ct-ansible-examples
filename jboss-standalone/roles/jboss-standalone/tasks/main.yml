@@ -1,12 +1,11 @@
 ---
-- name: Apply Updates and Reboot
-  block:
-    - name: Apply Yum Updates
-      yum:
-        name: "*"
-        state: latest
-      register: updates_result
+- name: Apply Yum Updates
+  yum:
+    name: "*"
+    state: latest
+  register: updates_result
   
+  block:
     - name: Get System Uptime
       command: uptime
       register: uptime_result
