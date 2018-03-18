@@ -76,11 +76,11 @@
     - name: RHEL6- Fix SELINUX Contexts /etc/init.d/jboss
       command: restorecon -RF /etc/init.d/jboss
 
-    - name: RHEL6- Enable and Start JBoss with service module
-      service:
-        name: jboss 
-        enabled: yes 
-        state: restarted
+#    - name: RHEL6- Enable and Start JBoss with service module
+#      service:
+#        name: jboss 
+#        enabled: yes 
+#        state: restarted
 
 #    - name: RHEL6- Validate JBOSS service started
 #      command: service jboss status
@@ -123,19 +123,19 @@
         group: jboss
         state: link
 
-    - name: RHEL7+ Enable and Start JBoss with systemctl
-      service: 
-        name: jboss 
-        enabled: yes 
-        state: restarted
+#    - name: RHEL7+ Enable and Start JBoss with systemctl
+#      service: 
+#        name: jboss 
+#        enabled: yes 
+#        state: restarted
 
-    - name: RHEL7+ Validate JBOSS service started
-      command: systemctl status jboss
-      register: jboss_service_result
+#    - name: RHEL7+ Validate JBOSS service started
+#      command: systemctl status jboss
+#      register: jboss_service_result
 
-    - name: RHEL7+ Display jboss systemctl  status results
-      debug:
-        var: jboss_service_result.stdout
+#    - name: RHEL7+ Display jboss systemctl  status results
+#      debug:
+#        var: jboss_service_result.stdout
 
     - name: RHEL7+ Ensure that firewalld is installed
       yum: 
@@ -157,6 +157,12 @@
       - "{{ http_port }}/tcp"
       - "{{ https_port }}/tcp"
   when: ansible_distribution_major_version >= "7"
+
+- name: Enable and Start JBoss with service module
+  service:
+    name: jboss 
+    enabled: yes 
+    state: restarted
 
 - name: Use URI module to Validate JBOSS Service is running
   uri:
