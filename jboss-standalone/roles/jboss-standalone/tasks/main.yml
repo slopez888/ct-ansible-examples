@@ -61,7 +61,6 @@
     dest: /usr/share/jboss-as/standalone/configuration/
     owner: jboss
     group: jboss
-  notify: restart jboss
 
 - name: Reset SELINUX Context of /usr/share/jboss-as-{{JBOSS_AS_RELEASE}} and /usr/share/jboss-as
   command: restorecon -RF /usr/share/jboss-as-{{JBOSS_AS_RELEASE}} /usr/share/jboss-as
