@@ -122,6 +122,20 @@
 
     - name: Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
+    
+    - name: Fix jboss-as.conf issues
+      file: 
+        dest: /etc/jboss-as
+        owner: jboss
+        group: jboss
+        directory: yes
+
+      file:
+        src: /usr/share/jboss-as/bin/init.d/jboss-as.conf
+        dest: /etc/jboss-as/jboss-as.conf
+        owner: jboss
+        group: jboss
+        state: link
 
     - name: Enable and Start JBoss with systemctl - RHEL7 and above
       service: 
