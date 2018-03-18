@@ -65,7 +65,7 @@
 #  command: /bin/mv /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as
   #command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
 
-- name: Copying standalone.xml configuration file
+- name: Installing  standalone.xml Template configuration file
   template: 
     src: standalone.xml 
     dest: /usr/share/jboss-as/standalone/configuration/
@@ -98,44 +98,43 @@
 - name: Fix SELINUX Contexts
   command: restorecon -RF /etc/init.d /usr/share/jboss-as
 
-- name: Enable and Start JBoss with chkconfig and service - RHEL6 and below
-  shell: service jboss start && chkconfig jboss on
+- name: Perform Specific Configurations for RHEL6 and Below
+  block:
+    - name: Enable and Start JBoss with chkconfig and service - RHEL6 and below
+      shell: service jboss start && chkconfig jboss on
+
+    - name: deploy iptables rules
+      template: 
+        src: iptables-save 
+        dest: /etc/sysconfig/iptables
+      notify: restart iptables
   when: ansible_distribution_major_version < "7" 
 
-- name: Enable and Start JBoss with systemctl - RHEL7 and above
-  service: 
-    name: jboss 
-    enabled: yes 
-    state: started
-  when: ansible_distribution_major_version >= "7" 
+- name: Perform Specific Configurations for RHEL7 and above
+  block:
+    - name: Enable and Start JBoss with systemctl - RHEL7 and above
+      service: 
+        name: jboss 
+        enabled: yes 
+        state: started
 
-- name: deploy iptables rules
-  template: 
-    src: iptables-save 
-    dest: /etc/sysconfig/iptables
-  when: ansible_distribution_major_version < "7" 
-  notify: restart iptables
+    - name: Ensure that firewalld is installed
+      yum: 
+        name: firewalld 
+        state: present
 
-- name: Ensure that firewalld is installed
-  yum: 
-    name: firewalld 
-    state: present
-  when: ansible_distribution_major_version >= "7" 
+    - name: Ensure that firewalld is started
+      service: 
+        name: firewalld 
+        state: started
 
-- name: Ensure that firewalld is started
-  service: 
-    name: firewalld 
-    state: started
-  when: ansible_distribution_major_version >= "7" 
-
-- name: deploy firewalld rules
-  firewalld: 
-    immediate: yes 
-    port: "{{ item }}" 
-    state: enabled 
-    permanent: yes
+    - name: deploy firewalld rules
+      firewalld: 
+        immediate: yes 
+        port: "{{ item }}" 
+        state: enabled 
+        permanent: yes
+      with_items:
+      - "{{ http_port }}/tcp"
+      - "{{ https_port }}/tcp"
   when: ansible_distribution_major_version >= "7"
-  with_items:
-  - "{{ http_port }}/tcp"
-  - "{{ https_port }}/tcp"
-
