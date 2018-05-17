@@ -145,18 +145,25 @@
     - name: RHEL7+ Ensure that firewalld is started
       service: 
         name: firewalld 
-        state: restarted
+        state: started
         enabled: yes
 
     - name: RHEL7+ deploy firewalld rules
       firewalld: 
-        immediate: yes 
+        immediate: no 
         port: "{{ item }}" 
         state: enabled 
         permanent: yes
       with_items:
       - "{{ http_port }}/tcp"
       - "{{ https_port }}/tcp"
+
+    - name: RHEL7+ restart firewalld
+      service: 
+        name: firewalld 
+        state: restarted
+        enabled: yes
+
   when: ansible_distribution_major_version >= "7"
 
 - name: Enable and Start JBoss with service module
