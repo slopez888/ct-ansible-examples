@@ -145,7 +145,8 @@
     - name: RHEL7+ Ensure that firewalld is started
       service: 
         name: firewalld 
-        state: started
+        state: restarted
+        enabled: yes
 
     - name: RHEL7+ deploy firewalld rules
       firewalld: 
