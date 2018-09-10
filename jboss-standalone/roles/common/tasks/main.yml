@@ -1,51 +1,83 @@
 ---
+- name: Set default value for reboots_required
+  set_fact:
+    reboots_required: False
+
 - name: Apply Yum Updates
   yum:
     name: "*"
     state: latest
-  register: updates_result
 
-- name: Reboot Systems if Necessary
+- name: Clean up all but the most recent kernel
+  command: package-cleanup --oldkernels --count=1 -y
+
+- name: Reboot RHEL-7/CentOS-7 Systems if Necessary
   block:
-    - name: Get System Uptime
-      command: uptime
-      register: uptime_result
+    - name: check to see if we need a reboot
+      command: needs-restarting -r
+      register: result
+      ignore_errors: yes
 
-    - name: show uptime command results
+    - name: display result
       debug:
-        var: uptime_result.stdout
+        var: result.rc
 
-    - name: Reboot RHEL6- Servers 
-      command: shutdown -r +1 "Ansible Updates Triggered" 
+    - name: Set reboots_required to True due to Updates
+      set_fact:
+        reboots_required: True
+      when: result.rc == 1
+
+    - name: Reboot Servers
+      command: shutdown -r +1 "Ansible Updates Triggered"
       become: true
       async: 0
       poll: 0
-      when: ansible_distribution_major_version < "7" 
+      when: result.rc == 1
+  when: ansible_distribution_major_version == "7"
 
-    - name: Reboot RHEL7+ Servers 
-      command: shutdown -r +1 --no-wall "Ansible Updates Triggered" 
+- name: Reboot RHEL-6/CentOS-6 Systems if Necessary
+  block:
+    - name: Check to see if we need a reboot - current kernel
+      command: uname -r
+      register: running_kernel
+
+    - name: display running_kernel
+      debug:
+        var: running_kernel.stdout
+
+    - name: Check to see if we need a reboot - latest kernel
+      shell: "rpm -q kernel|tail -1|cut -c8-"
+      register: latest_kernel
+
+    - name: display latest_kernel
+      debug:
+        var: latest_kernel.stdout
+
+    - name: Set reboots_required to True due to Updates
+      set_fact:
+        reboots_required: True
+      when: latest_kernel.stdout != running_kernel.stdout
+
+    - name: Reboot Servers
+      command: shutdown -r +1 "Ansible Updates Triggered"
       become: true
       async: 0
       poll: 0
-      when: ansible_distribution_major_version >= "7" 
+      when: latest_kernel.stdout != running_kernel.stdout
+  when: ansible_distribution_major_version == "6"
 
-    - name: wait for servers to reboot
-      wait_for:
-        port: 22
-        host: "{{ inventory_hostname }}"
-        state: started
-        delay: 80
-        timeout: 200
-      become: false
-      delegate_to: localhost
-  when: updates_result.changed
+- name: wait for Servers to reboot
+  wait_for:
+    port: 22
+    host: "{{ inventory_hostname }}"
+    state: started
+    delay: 80
+    timeout: 200
+  become: false
+  delegate_to: localhost
+  when: reboots_required
 
-- name: Get System Uptime Again to Validate Reboot or Not
-  shell: uptime
-  register: uptime_result
-
-- name: show uptime command results
-  debug:
-    var: uptime_result.stdout
-
+- name: Return reboots_required to the  default value
+  set_fact:
+    reboots_required: False
 ...
