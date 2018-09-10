@@ -1,0 +1,8 @@
+---
+# adding this comment
+# This playbook performs regression testing on Hello World and ticket-monster
+
+- hosts: all
+
+  roles:
+    - regression-test
