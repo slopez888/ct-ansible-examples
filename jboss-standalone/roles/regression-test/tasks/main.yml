@@ -30,7 +30,7 @@
 #
 - name: Ticket Monster - Test 2
   uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#events"
     return_content: yes
   register: webpage
 
