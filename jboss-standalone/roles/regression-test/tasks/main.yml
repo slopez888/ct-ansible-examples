@@ -30,7 +30,7 @@
 #
 - name: Ticket Monster - Test 2
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#events"
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html"
     return_content: yes
   register: webpage
 
