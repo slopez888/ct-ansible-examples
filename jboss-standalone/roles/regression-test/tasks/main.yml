@@ -35,8 +35,11 @@
   register: webpage
 
 - name: Ticket Monster - Validation 2
-  fail:
-  when: "'Concert' not in webpage.content"
+  assert:
+    that: 
+      - "'Concert' in webpage.content"
+      - "'Theatre' in webpage.content"
+      - "'Sporting' in webpage.content"
 
 #
 # Test to Verify ticket-monster Test #3
