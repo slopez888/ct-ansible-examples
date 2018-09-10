@@ -1,2 +1,80 @@
 ---
-# tasks file for regression-test
+#
+# Test to Verify Hello World Test #1
+#
+- name: Hello World - Test 1
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/helloworld/HelloWorld"
+    return_content: yes
+  register: webpage
+
+- name: Hello World - Validation 1
+  fail:
+  when: "'Hello World!' not in webpage.content"
+
+#
+# Test to Verify ticket-monster Test #1
+#
+- name: Ticket Monster - Test 1
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster"
+    return_content: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 1
+  fail:
+  when: "'Ticket Monster' not in webpage.content"
+
+#
+# Test to Verify ticket-monster Test #2
+#
+- name: Ticket Monster - Test 2
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#events"
+    return_content: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 2
+  fail:
+  when: "'Concert' not in webpage.content"
+
+#
+# Test to Verify ticket-monster Test #3
+#
+- name: Ticket Monster - Test 3
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#venues"
+    return_content: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 3
+  fail:
+  when: "'Boston' not in webpage.content"
+
+#
+# Test to Verify ticket-monster Test #4
+#
+- name: Ticket Monster - Test 4
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#bookings"
+    return_content: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 4
+  fail:
+  when: "'Current bookings' not in webpage.content"
+
+#
+# Test to Verify ticket-monster Test #5
+#
+- name: Ticket Monster - Test 5
+  uri:
+    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/admin/app.html#"
+    return_content: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 5
+  fail:
+  when: "'Your application is running' not in webpage.content"
+
+
