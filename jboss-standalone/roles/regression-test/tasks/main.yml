@@ -4,7 +4,7 @@
 #
 - name: Hello World - Test 1
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/helloworld/HelloWorld"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld/HelloWorld"
     return_content: yes
   register: webpage
 
@@ -17,7 +17,7 @@
 #
 - name: Ticket Monster - Test 1
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster"
     return_content: yes
   register: webpage
 
@@ -30,7 +30,7 @@
 #
 - name: Ticket Monster - Test 2
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html"
     return_content: yes
   register: webpage
 
@@ -46,7 +46,7 @@
 #
 - name: Ticket Monster - Test 3
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#venues"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#venues"
     return_content: yes
   register: webpage
 
@@ -59,7 +59,7 @@
 #
 - name: Ticket Monster - Test 4
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/index.html#bookings"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#bookings"
     return_content: yes
   register: webpage
 
@@ -72,7 +72,7 @@
 #
 - name: Ticket Monster - Test 5
   uri:
-    url: "http://{{ inventory_hostname }}:{{ http_port }}/ticket-monster/admin/app.html#"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html#"
     return_content: yes
   register: webpage
 
