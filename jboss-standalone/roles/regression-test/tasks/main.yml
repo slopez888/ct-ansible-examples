@@ -48,11 +48,11 @@
   uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#venues"
     return_content: yes
-  register: webpage
+  register: webpage3
 
 - name: Ticket Monster - Validation 3
   fail:
-  when: "'Boston' not in webpage.content"
+  when: "'Boston' not in webpage3.content"
 
 #
 # Test to Verify ticket-monster Test #4
