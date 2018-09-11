@@ -47,7 +47,7 @@
 #
 - name: Ticket Monster - Test 3
   uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#venues"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html{{'#'}}venues"
     return_content: yes
     follow_redirects: yes
   register: webpage3
