@@ -30,7 +30,7 @@
 #
 - name: Ticket Monster - Test 2
   uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#events"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html{{'#'}}events"
     return_content: yes
     follow_redirects: yes
   register: webpage
@@ -49,6 +49,7 @@
   uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#venues"
     return_content: yes
+    follow_redirects: yes
   register: webpage3
 
 - name: Ticket Monster - Validation 3
@@ -62,6 +63,7 @@
   uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#bookings"
     return_content: yes
+    follow_redirects: yes
   register: webpage
 
 - name: Ticket Monster - Validation 4
