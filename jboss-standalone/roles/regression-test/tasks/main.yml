@@ -35,6 +35,7 @@
     follow_redirects: yes
     headers:
       Content-Type: "text/html"
+    body_format: html
   register: webpage
 
 - name: Ticket Monster - Validation 2
