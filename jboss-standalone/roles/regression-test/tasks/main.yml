@@ -33,6 +33,8 @@
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster{{'#'}}events"
     return_content: yes
     follow_redirects: yes
+    headers:
+      Content-Type: "text/html"
   register: webpage
 
 - name: Ticket Monster - Validation 2
