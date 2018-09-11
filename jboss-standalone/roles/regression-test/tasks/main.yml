@@ -28,18 +28,19 @@
 #
 # Test to Verify ticket-monster Test #2
 #
-#- name: Ticket Monster - Test 2
-#  uri:
-#    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#events"
-#    return_content: yes
-#  register: webpage
-#
-#- name: Ticket Monster - Validation 2
-#  assert:
-#    that: 
-#      - "'Concert' in webpage.content"
-#      - "'Theatre' in webpage.content"
-#      - "'Sporting' in webpage.content"
+- name: Ticket Monster - Test 2
+  uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#events"
+    return_content: yes
+    follow_redirects: yes
+  register: webpage
+
+- name: Ticket Monster - Validation 2
+  assert:
+    that: 
+      - "'Concert' in webpage.content"
+      - "'Theatre' in webpage.content"
+      - "'Sporting' in webpage.content"
 
 #
 # Test to Verify ticket-monster Test #3
@@ -74,6 +75,7 @@
   uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html#"
     return_content: yes
+    follow_redirects: yes
   register: webpage
 
 - name: Ticket Monster - Validation 5
