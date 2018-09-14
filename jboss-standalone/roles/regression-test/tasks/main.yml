@@ -2,41 +2,53 @@
 #
 # Test to Verify Hello World Test #1
 #
+
 - name: Hello World - Test 1
-  uri:
+  my_uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld/HelloWorld"
     return_content: yes
-  register: webpage
+  register: hwtest1page
 
 - name: Hello World - Validation 1
   fail:
-  when: "'Hello World!' not in webpage.content"
+  when: "'Hello World!' not in hwtest1page.content"
 
 #
 # Test to Verify ticket-monster Test #1
 #
 - name: Ticket Monster - Test 1
-  uri:
+  my_uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster"
     return_content: yes
   register: webpage
+  ignore_errors: yes
+  tags: tmtest1
+
+- name: display test1 uri return code
+  debug: 
+    var: webpage.status
+  tags: tmtest1
 
 - name: Ticket Monster - Validation 1
   fail:
   when: "'Ticket Monster' not in webpage.content"
+  tags: tmtest1
 
 #
 # Test to Verify ticket-monster Test #2
 #
 - name: Ticket Monster - Test 2
-  uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster{{'#'}}events"
+  my_uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster#events"
     return_content: yes
-    follow_redirects: yes
-    headers:
-      Content-Type: "text/html"
-    body_format: html
   register: webpage
+  ignore_errors: yes
+  tags: tmtest2
+
+- name: display test2 uri return code
+  debug: 
+    var: webpage.status
+  tags: tmtest2
 
 - name: Ticket Monster - Validation 2
   assert:
@@ -44,47 +56,58 @@
       - "'Concert' in webpage.content"
       - "'Theatre' in webpage.content"
       - "'Sporting' in webpage.content"
+  tags: tmtest2
 
 #
 # Test to Verify ticket-monster Test #3
 #
+   # url: "http://52.53.248.131:8080/ticket-monster/index.html#venues"
+   # url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/#venues"
 - name: Ticket Monster - Test 3
-  uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html{{'#'}}venues"
+  my_uri:
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/#venues"
     return_content: yes
-    follow_redirects: yes
-  register: webpage3
+  register: webpage
+  ignore_errors: yes
+  tags: tmtest3
 
 - name: Ticket Monster - Validation 3
   fail:
-  when: "'Boston' not in webpage3.content"
+  when: "'Boston' not in webpage.content"
+  tags: tmtest3
 
 #
 # Test to Verify ticket-monster Test #4
 #
 - name: Ticket Monster - Test 4
-  uri:
+  my_uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#bookings"
     return_content: yes
     follow_redirects: yes
   register: webpage
+  ignore_errors: yes
+  tags: tmtest4
 
 - name: Ticket Monster - Validation 4
   fail:
   when: "'Current bookings' not in webpage.content"
+  tags: tmtest4
 
 #
 # Test to Verify ticket-monster Test #5
 #
 - name: Ticket Monster - Test 5
-  uri:
+  my_uri:
     url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html#"
     return_content: yes
     follow_redirects: yes
   register: webpage
+  ignore_errors: yes
+  tags: tmtest5
 
 - name: Ticket Monster - Validation 5
   fail:
   when: "'Your application is running' not in webpage.content"
+  tags: tmtest5
 
 

@@ -25,3 +25,6 @@ wait_for_port: 22
 
 # This user name will be set by Tower, when run through Tower
 tower_user_name: ctjon
+
+tmtest2_url: 'ticket-monster#events'
+
