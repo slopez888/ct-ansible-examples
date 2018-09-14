@@ -37,9 +37,10 @@
 #
 # Test to Verify ticket-monster Test #2
 #
-- name: Ticket Monster - Test 2
+    #url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/#/events"
+- name: Ticket Monster - Test #2
   my_uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster#events"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/rest/events"
     return_content: yes
   register: webpage
   ignore_errors: yes
@@ -61,11 +62,10 @@
 #
 # Test to Verify ticket-monster Test #3
 #
-   # url: "http://52.53.248.131:8080/ticket-monster/index.html#venues"
    # url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/#venues"
 - name: Ticket Monster - Test 3
   my_uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/#venues"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/rest/venues"
     return_content: yes
   register: webpage
   ignore_errors: yes
@@ -81,24 +81,30 @@
 #
 - name: Ticket Monster - Test 4
   my_uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/index.html#bookings"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/rest/bookings/count"
     return_content: yes
     follow_redirects: yes
   register: webpage
   ignore_errors: yes
   tags: tmtest4
 
+- name: display count value
+  debug: 
+    var: webpage.content
+  tags: tmtest4
+
 - name: Ticket Monster - Validation 4
   fail:
-  when: "'Current bookings' not in webpage.content"
+  when: "'\"count\":' not in webpage.content"
   tags: tmtest4
 
 #
 # Test to Verify ticket-monster Test #5
 #
 - name: Ticket Monster - Test 5
+    #url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html#"
   my_uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html#"
+    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/ticket-monster/admin/app.html"
     return_content: yes
     follow_redirects: yes
   register: webpage
