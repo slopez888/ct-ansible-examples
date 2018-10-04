@@ -1,7 +1,7 @@
 ---
 - name: Install Java OpenJDK {{OPENJDK_VERSION}} and some basic dependencies
   yum: 
-    name: [u'unzip',u'java-{{OPENJDK_VERSION}}-openjdk',u'libselinux-python',u'libsemanage-python']
+    name: unzip,java-{{OPENJDK_VERSION}}-openjdk,libselinux-python,libsemanage-python
     state: latest
 
 #- name: Install Java OpenJDK {{OPENJDK_VERSION}} and some basic dependencies
