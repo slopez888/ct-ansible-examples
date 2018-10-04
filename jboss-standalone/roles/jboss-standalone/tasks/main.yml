@@ -1,13 +1,18 @@
 ---
 - name: Install Java OpenJDK {{OPENJDK_VERSION}} and some basic dependencies
   yum: 
-    name: "{{ item }}"
+    name: [u'unzip',u'java-{{OPENJDK_VERSION}}-openjdk',u'libselinux-python',u'libsemanage-python']
     state: latest
-  with_items:
-   - unzip
-   - java-{{OPENJDK_VERSION}}-openjdk
-   - libselinux-python
-   - libsemanage-python
+
+#- name: Install Java OpenJDK {{OPENJDK_VERSION}} and some basic dependencies
+#  yum: 
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#   - unzip
+#   - java-{{OPENJDK_VERSION}}-openjdk
+#   - libselinux-python
+#   - libsemanage-python
 
 - name: Download JBoss from jboss.org
   get_url: 
