@@ -1,17 +1,17 @@
 localhost | SUCCESS => {
     "ansible_facts": {
         "ansible_all_ipv4_addresses": [
-            "192.168.12.1",
-            "172.16.1.152",
             "192.168.249.1",
             "192.168.11.1",
-            "172.16.78.1"
+            "172.16.78.1",
+            "172.16.1.152",
+            "192.168.12.1"
         ],
         "ansible_all_ipv6_addresses": [
-            "fe80::fec5:e18:1678:a1bf",
-            "fe80::fc54:ff:fe14:db96",
             "fe80::250:56ff:fec0:1",
-            "fe80::250:56ff:fec0:8"
+            "fe80::250:56ff:fec0:8",
+            "fe80::fec5:e18:1678:a1bf",
+            "fe80::fc54:ff:fe14:db96"
         ],
         "ansible_apparmor": {
             "status": "disabled"
@@ -20,7 +20,7 @@ localhost | SUCCESS => {
         "ansible_bios_date": "09/28/2018",
         "ansible_bios_version": "N1VET46W (1.36 )",
         "ansible_cmdline": {
-            "BOOT_IMAGE": "/vmlinuz-4.20.3-200.fc29.x86_64",
+            "BOOT_IMAGE": "/vmlinuz-4.20.6-200.fc29.x86_64",
             "LANG": "en_US.UTF-8",
             "biosdevname": "0",
             "net.ifnames": "0",
@@ -33,23 +33,23 @@ localhost | SUCCESS => {
             "root": "/dev/mapper/p51s_vg-rootlv"
         },
         "ansible_date_time": {
-            "date": "2019-01-23",
-            "day": "23",
-            "epoch": "1548267063",
-            "hour": "11",
-            "iso8601": "2019-01-23T18:11:03Z",
-            "iso8601_basic": "20190123T111103962783",
-            "iso8601_basic_short": "20190123T111103",
-            "iso8601_micro": "2019-01-23T18:11:03.962876Z",
-            "minute": "11",
-            "month": "01",
-            "second": "03",
-            "time": "11:11:03",
+            "date": "2019-02-08",
+            "day": "08",
+            "epoch": "1549658531",
+            "hour": "13",
+            "iso8601": "2019-02-08T20:42:11Z",
+            "iso8601_basic": "20190208T134211114278",
+            "iso8601_basic_short": "20190208T134211",
+            "iso8601_micro": "2019-02-08T20:42:11.114394Z",
+            "minute": "42",
+            "month": "02",
+            "second": "11",
+            "time": "13:42:11",
             "tz": "MST",
             "tz_offset": "-0700",
-            "weekday": "Wednesday",
-            "weekday_number": "3",
-            "weeknumber": "03",
+            "weekday": "Friday",
+            "weekday_number": "5",
+            "weeknumber": "05",
             "year": "2019"
         },
         "ansible_default_ipv4": {
@@ -83,10 +83,6 @@ localhost | SUCCESS => {
                 "dm-11": [
                     "dm-name-p51s_vg-homelv",
                     "dm-uuid-LVM-yuAEYtS7PtdtuqDdHvayVQILraegI7ol4AA8pD88sR9aLjdEPyyfA44aJnEVeJmw"
-                ],
-                "dm-12": [
-                    "dm-name-luks-8d9429b8-f688-4023-ae29-dcf5515e50f7",
-                    "dm-uuid-CRYPT-LUKS1-8d9429b8f6884023ae29dcf5515e50f7-luks-8d9429b8-f688-4023-ae29-dcf5515e50f7"
                 ],
                 "dm-2": [
                     "dm-name-p51s_vg-swaplv",
@@ -157,20 +153,11 @@ localhost | SUCCESS => {
                 ],
                 "sdb1": [
                     "usb-Generic-_SD_MMC_20120501030900000-0:0-part1"
-                ],
-                "sdc": [
-                    "usb-SanDisk_Ultra_4C530001200309111074-0:0"
-                ],
-                "sdc1": [
-                    "usb-SanDisk_Ultra_4C530001200309111074-0:0-part1"
                 ]
             },
             "labels": {
                 "dm-1": [
                     "root"
-                ],
-                "dm-12": [
-                    "DocumentsUSB"
                 ],
                 "dm-2": [
                     "swap"
@@ -231,9 +218,6 @@ localhost | SUCCESS => {
                 ],
                 "sda7": [
                     "dm-0"
-                ],
-                "sdc1": [
-                    "dm-12"
                 ]
             },
             "uuids": {
@@ -245,9 +229,6 @@ localhost | SUCCESS => {
                 ],
                 "dm-11": [
                     "f812822a-8b97-4b03-a1fa-f33e1176bcf7"
-                ],
-                "dm-12": [
-                    "3bbede77-7f27-42ec-91e2-152f96dabb39"
                 ],
                 "dm-2": [
                     "e545ae99-670c-4516-95ca-605ef746d498"
@@ -293,9 +274,6 @@ localhost | SUCCESS => {
                 ],
                 "sdb1": [
                     "f6da4a88-cf69-4e59-862f-cd0e27915e3a"
-                ],
-                "sdc1": [
-                    "8d9429b8-f688-4023-ae29-dcf5515e50f7"
                 ]
             }
         },
@@ -433,36 +411,6 @@ localhost | SUCCESS => {
                 "sectors": "377487360",
                 "sectorsize": "512",
                 "size": "180.00 GB",
-                "support_discard": "0",
-                "vendor": null,
-                "virtual": 1
-            },
-            "dm-12": {
-                "holders": [],
-                "host": "",
-                "links": {
-                    "ids": [
-                        "dm-name-luks-8d9429b8-f688-4023-ae29-dcf5515e50f7",
-                        "dm-uuid-CRYPT-LUKS1-8d9429b8f6884023ae29dcf5515e50f7-luks-8d9429b8-f688-4023-ae29-dcf5515e50f7"
-                    ],
-                    "labels": [
-                        "DocumentsUSB"
-                    ],
-                    "masters": [],
-                    "uuids": [
-                        "3bbede77-7f27-42ec-91e2-152f96dabb39"
-                    ]
-                },
-                "model": null,
-                "partitions": {},
-                "removable": "0",
-                "rotational": "1",
-                "sas_address": null,
-                "sas_device_handle": null,
-                "scheduler_mode": "",
-                "sectors": "481222656",
-                "sectorsize": "512",
-                "size": "229.46 GB",
                 "support_discard": "0",
                 "vendor": null,
                 "virtual": 1
@@ -925,54 +873,6 @@ localhost | SUCCESS => {
                 "support_discard": "0",
                 "vendor": "Generic-",
                 "virtual": 1
-            },
-            "sdc": {
-                "holders": [],
-                "host": "USB controller: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller (rev 21)",
-                "links": {
-                    "ids": [
-                        "usb-SanDisk_Ultra_4C530001200309111074-0:0"
-                    ],
-                    "labels": [],
-                    "masters": [],
-                    "uuids": []
-                },
-                "model": "Ultra",
-                "partitions": {
-                    "sdc1": {
-                        "holders": [
-                            "luks-8d9429b8-f688-4023-ae29-dcf5515e50f7"
-                        ],
-                        "links": {
-                            "ids": [
-                                "usb-SanDisk_Ultra_4C530001200309111074-0:0-part1"
-                            ],
-                            "labels": [],
-                            "masters": [
-                                "dm-12"
-                            ],
-                            "uuids": [
-                                "8d9429b8-f688-4023-ae29-dcf5515e50f7"
-                            ]
-                        },
-                        "sectors": "481226752",
-                        "sectorsize": 512,
-                        "size": "229.47 GB",
-                        "start": "3999744",
-                        "uuid": "8d9429b8-f688-4023-ae29-dcf5515e50f7"
-                    }
-                },
-                "removable": "1",
-                "rotational": "1",
-                "sas_address": null,
-                "sas_device_handle": null,
-                "scheduler_mode": "cfq",
-                "sectors": "485228544",
-                "sectorsize": "512",
-                "size": "231.38 GB",
-                "support_discard": "0",
-                "vendor": "SanDisk",
-                "virtual": 1
             }
         },
         "ansible_distribution": "Fedora",
@@ -1008,8 +908,8 @@ localhost | SUCCESS => {
             "GDM_LANG": "en_US.UTF-8",
             "GJS_DEBUG_OUTPUT": "stderr",
             "GJS_DEBUG_TOPICS": "JS ERROR;JS LOG",
-            "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/f4ce8ce0_350a_4164_a756_80003bdbdae1",
-            "GNOME_TERMINAL_SERVICE": ":1.70",
+            "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/7fea60a2_6ed8_40e8_947f_892045023667",
+            "GNOME_TERMINAL_SERVICE": ":1.229",
             "GUESTFISH_INIT": "\\e[1;34m",
             "GUESTFISH_OUTPUT": "\\e[0m",
             "GUESTFISH_PS1": "\\[\\e[1;32m\\]><fs>\\[\\e[0;31m\\] ",
@@ -1024,25 +924,23 @@ localhost | SUCCESS => {
             "LOGNAME": "chris",
             "LS_COLORS": "rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:",
             "MAIL": "/var/spool/mail/chris",
-            "MODULEPATH": "/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles",
+            "MODULEPATH": "/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles",
             "MODULEPATH_modshare": "/usr/share/modulefiles:1:/usr/share/Modules/modulefiles:1:/etc/modulefiles:1",
             "MODULESHOME": "/usr/share/Modules",
             "MODULES_CMD": "/usr/share/Modules/libexec/modulecmd.tcl",
             "MODULES_RUN_QUARANTINE": "LD_LIBRARY_PATH",
-            "OLDPWD": "/home/chris",
+            "OLDPWD": "/home/chris/MyDocuments/RedHat/Projects",
             "PATH": "/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/chris/.local/bin:/home/chris/bin:/home/chris/.local/bin:/home/chris/bin",
-            "PWD": "/home/chris/MyDocuments/RedHat/Projects/ansible-examples/jboss-standalone/roles/jboss-standalone/tasks",
+            "PWD": "/home/chris/MyDocuments/RedHat/Projects/ansible-examples/jboss-standalone",
             "QT_IM_MODULE": "ibus",
-            "SESSION_MANAGER": "local/unix:@/tmp/.ICE-unix/3931,unix/unix:/tmp/.ICE-unix/3931",
+            "SESSION_MANAGER": "local/unix:@/tmp/.ICE-unix/4689,unix/unix:/tmp/.ICE-unix/4689",
             "SHELL": "/bin/bash",
-            "SHLVL": "5",
-            "SSH_AGENT_PID": "5053",
-            "SSH_AUTH_SOCK": "/tmp/ssh-V16L0z8Lvfqt/agent.5052",
+            "SHLVL": "4",
+            "SSH_AGENT_PID": "24237",
+            "SSH_AUTH_SOCK": "/tmp/ssh-hrKQ68VKiHCj/agent.24235",
             "TERM": "xterm-256color",
             "USER": "chris",
             "USERNAME": "chris",
-            "VIM": "/etc",
-            "VIMRUNTIME": "/usr/share/vim/vim81",
             "VTE_VERSION": "5403",
             "WINDOWPATH": "2",
             "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
@@ -1052,7 +950,7 @@ localhost | SUCCESS => {
             "XDG_RUNTIME_DIR": "/run/user/1000",
             "XDG_SEAT": "seat0",
             "XDG_SESSION_DESKTOP": "gnome",
-            "XDG_SESSION_ID": "2",
+            "XDG_SESSION_ID": "4",
             "XDG_SESSION_TYPE": "x11",
             "XDG_VTNR": "2",
             "XMODIFIERS": "@im=ibus",
@@ -1155,21 +1053,21 @@ localhost | SUCCESS => {
         "ansible_fqdn": "p51s.p51s.tjon.net",
         "ansible_hostname": "p51s",
         "ansible_interfaces": [
-            "wwan0",
-            "vnet_nat2-nic",
-            "vnet_nat1-nic",
-            "vnet0",
-            "wlan0",
-            "eth0",
-            "vmnet1",
-            "lo",
-            "vnet_nat1",
             "vmnet8",
-            "vnet_nat2"
+            "eth0",
+            "lo",
+            "wwan0",
+            "vnet_nat2",
+            "vnet_nat1",
+            "wlan0",
+            "vmnet1",
+            "vnet0",
+            "vnet_nat2-nic",
+            "vnet_nat1-nic"
         ],
         "ansible_is_chroot": false,
         "ansible_iscsi_iqn": "iqn.1994-05.com.redhat:bf29f71419",
-        "ansible_kernel": "4.20.3-200.fc29.x86_64",
+        "ansible_kernel": "4.20.6-200.fc29.x86_64",
         "ansible_lo": {
             "active": true,
             "device": "lo",
@@ -1265,89 +1163,105 @@ localhost | SUCCESS => {
         },
         "ansible_machine": "x86_64",
         "ansible_machine_id": "fa5d385fa01d4d1ebbc03fb150943888",
-        "ansible_memfree_mb": 354,
+        "ansible_memfree_mb": 1891,
         "ansible_memory_mb": {
             "nocache": {
-                "free": 24439,
-                "used": 7590
+                "free": 22634,
+                "used": 9395
             },
             "real": {
-                "free": 354,
+                "free": 1891,
                 "total": 32029,
-                "used": 31675
+                "used": 30138
             },
             "swap": {
-                "cached": 5,
-                "free": 16105,
+                "cached": 0,
+                "free": 16376,
                 "total": 16383,
-                "used": 278
+                "used": 7
             }
         },
         "ansible_memtotal_mb": 32029,
         "ansible_mounts": [
             {
-                "block_available": 187073,
+                "block_available": 186866,
                 "block_size": 4096,
                 "block_total": 314336,
-                "block_used": 127263,
+                "block_used": 127470,
                 "device": "/dev/mapper/p51s_vg-rootlv",
                 "fstype": "ext4",
-                "inode_available": 77000,
+                "inode_available": 76949,
                 "inode_total": 81920,
-                "inode_used": 4920,
+                "inode_used": 4971,
                 "mount": "/",
                 "options": "rw,seclabel,relatime",
-                "size_available": 766251008,
+                "size_available": 765403136,
                 "size_total": 1287520256,
                 "uuid": "ba29b235-810f-4d69-a4db-e5f84328bdc0"
             },
             {
-                "block_available": 1021247,
+                "block_available": 974901,
                 "block_size": 4096,
                 "block_total": 3854066,
-                "block_used": 2832819,
+                "block_used": 2879165,
                 "device": "/dev/mapper/p51s_vg-usrlv",
                 "fstype": "ext4",
-                "inode_available": 643882,
+                "inode_available": 641365,
                 "inode_total": 983040,
-                "inode_used": 339158,
+                "inode_used": 341675,
                 "mount": "/usr",
                 "options": "rw,seclabel,relatime",
-                "size_available": 4183027712,
+                "size_available": 3993194496,
                 "size_total": 15786254336,
                 "uuid": "933a29f7-3e02-46ca-baea-dd8f34d084e0"
             },
             {
-                "block_available": 883143,
+                "block_available": 467215,
                 "block_size": 4096,
                 "block_total": 1273760,
-                "block_used": 390617,
+                "block_used": 806545,
                 "device": "/dev/mapper/p51s_vg-varlv",
                 "fstype": "ext4",
-                "inode_available": 324625,
+                "inode_available": 324321,
                 "inode_total": 327680,
-                "inode_used": 3055,
+                "inode_used": 3359,
                 "mount": "/var",
                 "options": "rw,seclabel,relatime",
-                "size_available": 3617353728,
+                "size_available": 1913712640,
                 "size_total": 5217320960,
                 "uuid": "d74a6991-a030-4094-ba58-0a08483e08ed"
             },
             {
-                "block_available": 2303719,
-                "block_size": 4096,
-                "block_total": 2563909,
-                "block_used": 260190,
-                "device": "/dev/mapper/p51s_vg-tmplv",
+                "block_available": 64186,
+                "block_size": 1024,
+                "block_total": 245671,
+                "block_used": 181485,
+                "device": "/dev/sda6",
                 "fstype": "ext4",
-                "inode_available": 654684,
-                "inode_total": 655360,
-                "inode_used": 676,
-                "mount": "/tmp",
+                "inode_available": 65440,
+                "inode_total": 65536,
+                "inode_used": 96,
+                "mount": "/boot",
                 "options": "rw,seclabel,relatime",
-                "size_available": 9436033024,
-                "size_total": 10501771264,
-                "uuid": "d4d2642a-8ade-4df2-81c4-5b06caa99530"
+                "size_available": 65726464,
+                "size_total": 251567104,
+                "uuid": "d9963db3-fade-4c5f-a2e6-5d610158ca94"
+            },
+            {
+                "block_available": 16247813,
+                "block_size": 4096,
+                "block_total": 46412632,
+                "block_used": 30164819,
+                "device": "/dev/mapper/p51s_vg-homelv",
+                "fstype": "ext4",
+                "inode_available": 11501821,
+                "inode_total": 11796480,
+                "inode_used": 294659,
+                "mount": "/home",
+                "options": "rw,seclabel,relatime",
+                "size_available": 66551042048,
+                "size_total": 190106140672,
+                "uuid": "f812822a-8b97-4b03-a1fa-f33e1176bcf7"
             },
             {
                 "block_available": 24557,
@@ -1366,52 +1280,52 @@ localhost | SUCCESS => {
                 "uuid": "78b4f92f-e386-4a73-924a-a52ed747c07b"
             },
             {
-                "block_available": 64300,
-                "block_size": 1024,
-                "block_total": 245671,
-                "block_used": 181371,
-                "device": "/dev/sda6",
-                "fstype": "ext4",
-                "inode_available": 65440,
-                "inode_total": 65536,
-                "inode_used": 96,
-                "mount": "/boot",
-                "options": "rw,seclabel,relatime",
-                "size_available": 65843200,
-                "size_total": 251567104,
-                "uuid": "d9963db3-fade-4c5f-a2e6-5d610158ca94"
-            },
-            {
-                "block_available": 9712818,
+                "block_available": 2331208,
                 "block_size": 4096,
-                "block_total": 46412632,
-                "block_used": 36699814,
-                "device": "/dev/mapper/p51s_vg-homelv",
+                "block_total": 2563909,
+                "block_used": 232701,
+                "device": "/dev/mapper/p51s_vg-tmplv",
                 "fstype": "ext4",
-                "inode_available": 11506271,
-                "inode_total": 11796480,
-                "inode_used": 290209,
-                "mount": "/home",
+                "inode_available": 654972,
+                "inode_total": 655360,
+                "inode_used": 388,
+                "mount": "/tmp",
                 "options": "rw,seclabel,relatime",
-                "size_available": 39783702528,
-                "size_total": 190106140672,
-                "uuid": "f812822a-8b97-4b03-a1fa-f33e1176bcf7"
+                "size_available": 9548627968,
+                "size_total": 10501771264,
+                "uuid": "d4d2642a-8ade-4df2-81c4-5b06caa99530"
             },
             {
-                "block_available": 176379,
+                "block_available": 160364,
                 "block_size": 4096,
                 "block_total": 249830,
-                "block_used": 73451,
+                "block_used": 89466,
                 "device": "/dev/mapper/p51s_vg-loglv",
                 "fstype": "ext4",
-                "inode_available": 65386,
+                "inode_available": 65354,
                 "inode_total": 65536,
-                "inode_used": 150,
+                "inode_used": 182,
                 "mount": "/var/log",
                 "options": "rw,seclabel,relatime",
-                "size_available": 722448384,
+                "size_available": 656850944,
                 "size_total": 1023303680,
                 "uuid": "f5e93138-2a77-4357-b9cb-70ec175b9a85"
+            },
+            {
+                "block_available": 22062993,
+                "block_size": 4096,
+                "block_total": 51540474,
+                "block_used": 29477481,
+                "device": "/dev/mapper/p51s_vg-vm_images_lv",
+                "fstype": "ext4",
+                "inode_available": 13107178,
+                "inode_total": 13107200,
+                "inode_used": 22,
+                "mount": "/var/lib/libvirt/images",
+                "options": "rw,seclabel,relatime",
+                "size_available": 90370019328,
+                "size_total": 211109781504,
+                "uuid": "bd86a829-94e5-4796-93f0-ab9c485752e4"
             },
             {
                 "block_available": 354383,
@@ -1430,38 +1344,6 @@ localhost | SUCCESS => {
                 "uuid": "6479d38b-8459-4c47-99f0-ee8f5a1228b3"
             },
             {
-                "block_available": 15439069,
-                "block_size": 4096,
-                "block_total": 51540474,
-                "block_used": 36101405,
-                "device": "/dev/mapper/p51s_vg-vm_images_lv",
-                "fstype": "ext4",
-                "inode_available": 13107175,
-                "inode_total": 13107200,
-                "inode_used": 25,
-                "mount": "/var/lib/libvirt/images",
-                "options": "rw,seclabel,relatime",
-                "size_available": 63238426624,
-                "size_total": 211109781504,
-                "uuid": "bd86a829-94e5-4796-93f0-ab9c485752e4"
-            },
-            {
-                "block_available": 11492886,
-                "block_size": 4096,
-                "block_total": 240995534,
-                "block_used": 229502648,
-                "device": "/dev/mapper/p51s_vg-installlv",
-                "fstype": "ext4",
-                "inode_available": 60618132,
-                "inode_total": 61276160,
-                "inode_used": 658028,
-                "mount": "/export/install",
-                "options": "rw,seclabel,relatime",
-                "size_available": 47074861056,
-                "size_total": 987117707264,
-                "uuid": "74ea24db-807f-47c9-9e16-e01f8b3211ea"
-            },
-            {
                 "block_available": 23535,
                 "block_size": 2048,
                 "block_total": 32695,
@@ -1478,36 +1360,36 @@ localhost | SUCCESS => {
                 "uuid": "6C3A-7CC6"
             },
             {
-                "block_available": 48166183,
+                "block_available": 10997386,
                 "block_size": 4096,
-                "block_total": 122970844,
-                "block_used": 74804661,
-                "device": "/dev/sdb1",
+                "block_total": 240995534,
+                "block_used": 229998148,
+                "device": "/dev/mapper/p51s_vg-installlv",
                 "fstype": "ext4",
-                "inode_available": 31293211,
-                "inode_total": 31301632,
-                "inode_used": 8421,
-                "mount": "/export/archive",
+                "inode_available": 60614345,
+                "inode_total": 61276160,
+                "inode_used": 661815,
+                "mount": "/export/install",
                 "options": "rw,seclabel,relatime",
-                "size_available": 197288685568,
-                "size_total": 503688577024,
-                "uuid": "f6da4a88-cf69-4e59-862f-cd0e27915e3a"
+                "size_available": 45045293056,
+                "size_total": 987117707264,
+                "uuid": "74ea24db-807f-47c9-9e16-e01f8b3211ea"
             },
             {
-                "block_available": 30594154,
+                "block_available": 48160356,
                 "block_size": 4096,
-                "block_total": 58946534,
-                "block_used": 28352380,
-                "device": "/dev/mapper/luks-8d9429b8-f688-4023-ae29-dcf5515e50f7",
+                "block_total": 122970844,
+                "block_used": 74810488,
+                "device": "/dev/sdb1",
                 "fstype": "ext4",
-                "inode_available": 14926160,
-                "inode_total": 15040512,
-                "inode_used": 114352,
-                "mount": "/run/media/chris/DocumentsUSB",
-                "options": "rw,seclabel,nosuid,nodev,relatime",
-                "size_available": 125313654784,
-                "size_total": 241445003264,
-                "uuid": "3bbede77-7f27-42ec-91e2-152f96dabb39"
+                "inode_available": 31293210,
+                "inode_total": 31301632,
+                "inode_used": 8422,
+                "mount": "/export/archive",
+                "options": "rw,seclabel,relatime",
+                "size_available": 197264818176,
+                "size_total": 503688577024,
+                "uuid": "f6da4a88-cf69-4e59-862f-cd0e27915e3a"
             }
         ],
         "ansible_nodename": "p51s.p51s.tjon.net",
@@ -1566,7 +1448,7 @@ localhost | SUCCESS => {
         },
         "ansible_selinux_python_present": true,
         "ansible_service_mgr": "systemd",
-        "ansible_swapfree_mb": 16105,
+        "ansible_swapfree_mb": 16376,
         "ansible_swaptotal_mb": 16383,
         "ansible_system": "Linux",
         "ansible_system_capabilities": [
@@ -1574,7 +1456,7 @@ localhost | SUCCESS => {
         ],
         "ansible_system_capabilities_enforced": "True",
         "ansible_system_vendor": "LENOVO",
-        "ansible_uptime_seconds": 50308,
+        "ansible_uptime_seconds": 281448,
         "ansible_user_dir": "/home/chris",
         "ansible_user_gecos": "Chris Tjon",
         "ansible_user_gid": 1000,

@@ -8,4 +8,4 @@
     #- common
     - jboss-standalone
     - java-app
-    #- regression-test
+    - regression-test

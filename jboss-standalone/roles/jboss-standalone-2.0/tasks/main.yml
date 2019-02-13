@@ -164,8 +164,8 @@
         state: enabled 
         permanent: yes
       with_items:
-        - "{{ http_port }}/tcp"
-        - "{{ https_port }}/tcp"
+      - "{{ http_port }}/tcp"
+      - "{{ https_port }}/tcp"
 
     - name: RHEL7+ restart firewalld
       service: 

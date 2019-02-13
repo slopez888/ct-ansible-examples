@@ -1,0 +1,11 @@
+[Unit]
+Description=Jboss Application Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh start
+ExecStop=/usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh stop
+
+[Install]
+WantedBy=multi-user.target
