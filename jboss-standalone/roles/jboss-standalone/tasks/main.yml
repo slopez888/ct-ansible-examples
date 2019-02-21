@@ -109,6 +109,12 @@
 
 - name: RHEL7+ Perform Specific Configurations
   block:
+    - name: RRHEL7+ Fix the JBoss user in script
+      copy: 
+        src: jboss-as-standalone.sh 
+        dest: /user/share/jboss-as/bin/init.d/jboss-as-standalone.sh
+        mode: 0755
+        
     - name: RHEL7+ Configure the init script for systemd
       template: 
         src: jboss.systemd
