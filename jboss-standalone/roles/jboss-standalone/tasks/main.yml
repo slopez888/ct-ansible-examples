@@ -187,15 +187,11 @@
     enabled: yes 
     state: stopped
 
-
-    
 - name: Enable and Start JBoss with service module
   service:
     name: jboss 
     enabled: yes 
     state: started
-    
-    
 
 - name: wait for jboss to restart
   wait_for:
