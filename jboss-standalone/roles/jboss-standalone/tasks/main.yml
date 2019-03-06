@@ -109,6 +109,12 @@
 
 - name: RHEL7+ Perform Specific Configurations
   block:
+    - name: RHEL7+ Fix the JBoss user in script
+      copy: 
+        src: jboss-as-standalone.sh 
+        dest: /usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh
+        mode: 0755
+        
     - name: RHEL7+ Configure the init script for systemd
       template: 
         src: jboss.systemd
@@ -175,11 +181,21 @@
 
   when: ansible_distribution_major_version >= "7"
 
+- name: Enable and Stop JBoss with service module
+  service:
+    name: jboss 
+    enabled: yes 
+    state: stopped
+
+
+    
 - name: Enable and Start JBoss with service module
   service:
     name: jboss 
     enabled: yes 
-    state: restarted
+    state: started
+    
+    
 
 - name: wait for jboss to restart
   wait_for:

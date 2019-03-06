@@ -6,6 +6,7 @@ After=syslog.target network.target
 Type=forking
 ExecStart=/usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh start
 ExecStop=/usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh stop
+ExecReload=/usr/share/jboss-as/bin/init.d/jboss-as-standalone.sh restart
 
 [Install]
 WantedBy=multi-user.target
