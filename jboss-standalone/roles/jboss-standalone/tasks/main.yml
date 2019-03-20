@@ -19,8 +19,6 @@
     src: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
     copy: no 
     creates: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
-  async: 250
-  poll: 0
 
 - name: Add group "jboss"
   group: 
