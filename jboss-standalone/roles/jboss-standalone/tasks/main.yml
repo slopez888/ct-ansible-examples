@@ -3,33 +3,33 @@
   yum: 
     name: unzip,java-{{OPENJDK_VERSION}}-openjdk,libselinux-python,libsemanage-python
     state: latest
-    async: 250
-    poll: 0
-    register: wait_result
+  async: 250
+  poll: 0
+  register: wait_result
 
-  - name: check on async task
-    async_status:
-      jid: "{{ item.ansible_job_id }}"
-    register: job_result
-    until: job_result.finished
-    retries: 300
-    with_items: "{{wait_result.results}}"
+- name: check on async task
+  async_status:
+    jid: "{{ item.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 300
+  with_items: "{{wait_result.results}}"
 
 - name: Download JBoss from jboss.org
   get_url: 
     url: http://download.jboss.org/jbossas/7.1/jboss-as-{{JBOSS_AS_RELEASE}}/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
     dest: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip
-    async: 250
-    poll: 0
-    register: wait_result
+  async: 250
+  poll: 0
+  register: wait_result
 
-  - name: check on async task
-    async_status:
-      jid: "{{ item.ansible_job_id }}"
-    register: job_result
-    until: job_result.finished
-    retries: 300
-    with_items: "{{wait_result.results}}"
+- name: check on async task
+  async_status:
+    jid: "{{ item.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 300
+  with_items: "{{wait_result.results}}"
 
 - name: Extract archive
   unarchive: 
@@ -37,17 +37,17 @@
     src: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
     copy: no 
     creates: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
-    async: 250
-    poll: 0
-    register: wait_result
+  async: 250
+  poll: 0
+  register: wait_result
 
-  - name: check on async task
-    async_status:
-      jid: "{{ item.ansible_job_id }}"
-    register: job_result
-    until: job_result.finished
-    retries: 300
-    with_items: "{{wait_result.results}}"
+- name: check on async task
+  async_status:
+    jid: "{{ item.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 300
+  with_items: "{{wait_result.results}}"
 
 - name: Add group "jboss"
   group: 
