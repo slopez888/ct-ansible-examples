@@ -4,14 +4,14 @@
     name: unzip,java-{{OPENJDK_VERSION}}-openjdk,libselinux-python,libsemanage-python
     state: latest
   async: 250
-  poll: 0
+  poll: 10
 
 - name: Download JBoss from jboss.org
   get_url: 
     url: http://download.jboss.org/jbossas/7.1/jboss-as-{{JBOSS_AS_RELEASE}}/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
     dest: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip
   async: 250
-  poll: 0
+  poll: 10
 
 - name: Extract archive
   unarchive: 
