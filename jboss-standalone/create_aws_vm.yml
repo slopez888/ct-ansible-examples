@@ -31,7 +31,15 @@
       timeout: 320 
       state: started
     with_items: "{{ ec2.instances }}"
-    async: 300
-    poll: 10
+    async: 250
+    poll: 0
+    register: wait_for_result
+
+- name: 'wait_for - check on async task'
+  async_status:
+    jid: "{{ wait_for_result.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 20
 
 ...
