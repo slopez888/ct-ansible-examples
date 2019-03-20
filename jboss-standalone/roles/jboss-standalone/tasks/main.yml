@@ -171,6 +171,10 @@
   poll: 0
   register: wait_for_result
 
+- name: dump wait_for_result
+  debug:
+    var: wait_for_result
+
 - name: check on async task
   async_status:
     jid: "{{ item.ansible_job_id }}"
