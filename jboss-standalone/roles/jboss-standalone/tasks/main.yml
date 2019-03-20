@@ -168,20 +168,8 @@
   become: false
   delegate_to: localhost
   async: 250
-  poll: 0
+  poll: 10
   register: wait_for_result
-
-- name: dump wait_for_result
-  debug:
-    var: wait_for_result
-
-- name: check on async task
-  async_status:
-    jid: "{{ item.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 300
-  with_items: "{{wait_for_result.results}}"
 
 - name: Use URI module to Validate JBOSS Service is running
   uri:
