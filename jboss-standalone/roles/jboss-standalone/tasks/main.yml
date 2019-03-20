@@ -5,15 +5,6 @@
     state: latest
   async: 250
   poll: 0
-  register: yum_result
-
-- name: check on async task
-  async_status:
-    jid: "{{ item.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 300
-  with_items: "{{yum_result.results}}"
 
 - name: Download JBoss from jboss.org
   get_url: 
@@ -21,15 +12,6 @@
     dest: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip
   async: 250
   poll: 0
-  register: get_url_result
-
-- name: check on async task
-  async_status:
-    jid: "{{ item.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 300
-  with_items: "{{get_url_result.results}}"
 
 - name: Extract archive
   unarchive: 
@@ -39,15 +21,6 @@
     creates: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
   async: 250
   poll: 0
-  register: unarchive_result
-
-- name: check on async task
-  async_status:
-    jid: "{{ item.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 300
-  with_items: "{{unarchive_result.results}}"
 
 - name: Add group "jboss"
   group: 
