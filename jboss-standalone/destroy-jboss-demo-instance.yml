@@ -33,7 +33,7 @@
       state: absent
       instance_initiated_shutdown_behavior: terminate
     with_items: "{{ ec2_result.instances }}"
-#    async: 1000
-#    poll: 0
+    async: 1000
+    poll: 0
 
  
