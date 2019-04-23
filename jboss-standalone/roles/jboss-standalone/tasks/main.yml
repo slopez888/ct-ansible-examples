@@ -15,8 +15,8 @@
 
 - name: Extract archive
   unarchive: 
-    dest: /usr/share 
     src: /opt/jboss-as-{{JBOSS_AS_RELEASE}}.zip 
+    dest: /usr/share 
     copy: no 
     creates: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
 
