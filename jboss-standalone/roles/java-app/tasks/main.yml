@@ -9,18 +9,18 @@
     src: ticket-monster.war
     dest: /var/tmp
 
-- name: Deploy HelloWorld to JBoss
-  jboss:
-    deploy_path: /usr/share/jboss-as/standalone/deployments/
-    src: /var/tmp/jboss-helloworld.war 
-    deployment: helloworld.war
-    state: present
-
-- name: Use URI module to Validate Hello World Application is running
-  uri:
-    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld/HelloWorld"
-    return_content: yes
-  register: webpage
+#- name: Deploy HelloWorld to JBoss
+#  jboss:
+#    deploy_path: /usr/share/jboss-as/standalone/deployments/
+#    src: /var/tmp/jboss-helloworld.war 
+#    deployment: helloworld.war
+#    state: present
+#
+#- name: Use URI module to Validate Hello World Application is running
+#  uri:
+#    url: "http://{{ ansible_ssh_host }}:{{ http_port }}/helloworld/HelloWorld"
+#    return_content: yes
+#  register: webpage
 
 - name: Fail if "Hello World!" is not in the output
   fail:
