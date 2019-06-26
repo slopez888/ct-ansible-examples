@@ -22,9 +22,9 @@
 #    return_content: yes
 #  register: webpage
 
-- name: Fail if "Hello World!" is not in the output
-  fail:
-  when: "'Hello World!' not in webpage.content"
+#- name: Fail if "Hello World!" is not in the output
+#  fail:
+#  when: "'Hello World!' not in webpage.content"
   
 - name: Deploy Ticket Monster to JBoss
   jboss: 
