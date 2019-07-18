@@ -29,7 +29,6 @@
     name: jboss 
     group: jboss 
     home: /home/jboss-as
-    #home: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}
 
 - name: Change ownership of JBoss installation
   file: 
@@ -130,19 +129,13 @@
 
     - name: RHEL7+ deploy firewalld rules
       firewalld: 
-        immediate: no 
+        immediate: yes 
         port: "{{ item }}" 
         state: enabled 
         permanent: yes
       with_items:
         - "{{ http_port }}/tcp"
         - "{{ https_port }}/tcp"
-
-    - name: RHEL7+ restart firewalld
-      service: 
-        name: firewalld 
-        state: restarted
-        enabled: yes
 
   when: ansible_distribution_major_version >= "7"
 
