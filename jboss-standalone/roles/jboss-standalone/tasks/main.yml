@@ -101,14 +101,15 @@
     - name: RHEL7+ Fix SELINUX Contexts /etc/systemd/system/jboss.service
       command: restorecon -RF /etc/systemd/system/jboss.service
    
-    - name: RHEL7+ Fix jboss-as.conf issues - create /etc/jboss-as
+    - name: RHEL7+ create /etc/jboss-as and set permissions
       file: 
         dest: /etc/jboss-as
         owner: jboss
         group: jboss
+        mode: 0755
         state: directory
 
-    - name: RHEL7+ Fix jboss-as.conf issues - link /etc/jboss-as/jboss-as.conf
+    - name: RHEL7+ link /etc/jboss-as/jboss-as.conf
       file:
         src: /usr/share/jboss-as/bin/init.d/jboss-as.conf
         dest: /etc/jboss-as/jboss-as.conf
@@ -166,4 +167,3 @@
 - name: Fail if "Your JBoss Application Server 7 is running" is not in the output
   fail:
   when: "'Your JBoss Application Server 7 is running' not in webpage.content"
-...

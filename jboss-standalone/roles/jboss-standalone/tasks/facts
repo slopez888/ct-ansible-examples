@@ -3,12 +3,12 @@ localhost | SUCCESS => {
         "ansible_all_ipv4_addresses": [
             "172.16.48.1",
             "192.168.116.1",
-            "10.0.72.209"
+            "172.31.118.167"
         ],
         "ansible_all_ipv6_addresses": [
             "fe80::250:56ff:fec0:1",
             "fe80::250:56ff:fec0:8",
-            "fe80::74f1:fb3a:c1fe:3c9c"
+            "fe80::98a9:c774:b7c:919a"
         ],
         "ansible_apparmor": {
             "status": "disabled"
@@ -27,35 +27,35 @@ localhost | SUCCESS => {
             "root": "/dev/mapper/rootvg-rootlv"
         },
         "ansible_date_time": {
-            "date": "2019-10-08",
-            "day": "08",
-            "epoch": "1570553871",
-            "hour": "09",
-            "iso8601": "2019-10-08T16:57:51Z",
-            "iso8601_basic": "20191008T095751001846",
-            "iso8601_basic_short": "20191008T095751",
-            "iso8601_micro": "2019-10-08T16:57:51.001972Z",
-            "minute": "57",
+            "date": "2019-10-09",
+            "day": "09",
+            "epoch": "1570634512",
+            "hour": "08",
+            "iso8601": "2019-10-09T15:21:52Z",
+            "iso8601_basic": "20191009T082152206249",
+            "iso8601_basic_short": "20191009T082152",
+            "iso8601_micro": "2019-10-09T15:21:52.206352Z",
+            "minute": "21",
             "month": "10",
-            "second": "51",
-            "time": "09:57:51",
+            "second": "52",
+            "time": "08:21:52",
             "tz": "MST",
             "tz_offset": "-0700",
-            "weekday": "Tuesday",
-            "weekday_number": "2",
+            "weekday": "Wednesday",
+            "weekday_number": "3",
             "weeknumber": "40",
             "year": "2019"
         },
         "ansible_default_ipv4": {
-            "address": "10.0.72.209",
+            "address": "172.31.118.167",
             "alias": "wlp2s0",
-            "broadcast": "10.0.75.255",
-            "gateway": "10.0.72.1",
+            "broadcast": "172.31.118.255",
+            "gateway": "172.31.118.254",
             "interface": "wlp2s0",
             "macaddress": "38:ba:f8:94:93:5f",
             "mtu": 1500,
-            "netmask": "255.255.252.0",
-            "network": "10.0.72.0",
+            "netmask": "255.255.255.0",
+            "network": "172.31.118.0",
             "type": "ether"
         },
         "ansible_default_ipv6": {},
@@ -652,11 +652,10 @@ localhost | SUCCESS => {
         "ansible_distribution_version": "30",
         "ansible_dns": {
             "nameservers": [
-                "208.67.220.222",
-                "208.67.220.220"
+                "8.34.34.34"
             ],
             "search": [
-                "safeway01.ad.safeway.com",
+                "SSG-550M",
                 "internal.tjon.net"
             ]
         },
@@ -770,7 +769,7 @@ localhost | SUCCESS => {
             "GDM_LANG": "en_US.UTF-8",
             "GJS_DEBUG_OUTPUT": "stderr",
             "GJS_DEBUG_TOPICS": "JS ERROR;JS LOG",
-            "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/e82ccf71_b63e_4524_a127_50bfbb95aa29",
+            "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/4c38c9d1_9e9e_480a_bb97_970e205cc379",
             "GNOME_TERMINAL_SERVICE": ":1.211",
             "HISTCONTROL": "ignoredups",
             "HISTSIZE": "1000",
@@ -790,14 +789,14 @@ localhost | SUCCESS => {
             "MODULES_CMD": "/usr/share/Modules/libexec/modulecmd.tcl",
             "MODULES_RUN_QUARANTINE": "LD_LIBRARY_PATH",
             "OLDPWD": "/home/chris/playbooks/redhat/ansible-examples/jboss-standalone/roles/jboss-standalone",
-            "PATH": "/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/chris/.local/bin:/home/chris/bin:/home/chris/.local/bin:/home/chris/bin",
+            "PATH": "/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/chris/.local/bin:/home/chris/bin:/home/chris/.local/bin:/home/chris/bin:/home/chris/.local/bin:/home/chris/bin",
             "PWD": "/home/chris/playbooks/redhat/ansible-examples/jboss-standalone/roles/jboss-standalone/tasks",
             "QT_IM_MODULE": "ibus",
             "SESSION_MANAGER": "local/unix:@/tmp/.ICE-unix/2515,unix/unix:/tmp/.ICE-unix/2515",
             "SHELL": "/bin/bash",
             "SHLVL": "3",
-            "SSH_AGENT_PID": "15865",
-            "SSH_AUTH_SOCK": "/tmp/ssh-3bzsbiQeVZoG/agent.15864",
+            "SSH_AGENT_PID": "22193",
+            "SSH_AUTH_SOCK": "/tmp/ssh-lgDQK0AOSJku/agent.22192",
             "S_COLORS": "auto",
             "TERM": "xterm-256color",
             "USER": "chris",
@@ -827,10 +826,10 @@ localhost | SUCCESS => {
         "ansible_hostnqn": "",
         "ansible_interfaces": [
             "lo",
-            "vmnet8",
             "wlp2s0",
-            "vmnet1",
-            "enp0s31f6"
+            "vmnet8",
+            "enp0s31f6",
+            "vmnet1"
         ],
         "ansible_is_chroot": false,
         "ansible_iscsi_iqn": "iqn.1994-05.com.redhat:c5ca8a9b3938",
@@ -929,39 +928,39 @@ localhost | SUCCESS => {
         },
         "ansible_machine": "x86_64",
         "ansible_machine_id": "cf9a22c606414e938afa7a07a0ae19bc",
-        "ansible_memfree_mb": 7410,
+        "ansible_memfree_mb": 8305,
         "ansible_memory_mb": {
             "nocache": {
-                "free": 10362,
-                "used": 5321
+                "free": 10869,
+                "used": 4814
             },
             "real": {
-                "free": 7410,
+                "free": 8305,
                 "total": 15683,
-                "used": 8273
+                "used": 7378
             },
             "swap": {
-                "cached": 61,
-                "free": 22958,
+                "cached": 25,
+                "free": 23097,
                 "total": 23727,
-                "used": 769
+                "used": 630
             }
         },
         "ansible_memtotal_mb": 15683,
         "ansible_mounts": [
             {
-                "block_available": 75040,
+                "block_available": 75038,
                 "block_size": 4096,
                 "block_total": 250835,
-                "block_used": 175795,
+                "block_used": 175797,
                 "device": "/dev/mapper/rootvg-rootlv",
                 "fstype": "ext4",
-                "inode_available": 60789,
+                "inode_available": 60787,
                 "inode_total": 65808,
-                "inode_used": 5019,
+                "inode_used": 5021,
                 "mount": "/",
                 "options": "rw,seclabel,relatime",
-                "size_available": 307363840,
+                "size_available": 307355648,
                 "size_total": 1027420160,
                 "uuid": "c72175c1-cda6-47cf-b3fb-a312132d2602"
             },
@@ -998,26 +997,26 @@ localhost | SUCCESS => {
                 "uuid": "a7ec151c-f9af-4930-932f-e15a773784a6"
             },
             {
-                "block_available": 228971,
+                "block_available": 229012,
                 "block_size": 4096,
                 "block_total": 249830,
-                "block_used": 20859,
+                "block_used": 20818,
                 "device": "/dev/mapper/rootvg-tmplv",
                 "fstype": "ext4",
-                "inode_available": 65267,
+                "inode_available": 65268,
                 "inode_total": 65536,
-                "inode_used": 269,
+                "inode_used": 268,
                 "mount": "/tmp",
                 "options": "rw,seclabel,relatime",
-                "size_available": 937865216,
+                "size_available": 938033152,
                 "size_total": 1023303680,
                 "uuid": "f10b823f-c39b-4192-aba9-a66c220f0994"
             },
             {
-                "block_available": 396205,
+                "block_available": 396181,
                 "block_size": 4096,
                 "block_total": 499668,
-                "block_used": 103463,
+                "block_used": 103487,
                 "device": "/dev/mapper/rootvg-varlv",
                 "fstype": "ext4",
                 "inode_available": 128541,
@@ -1025,47 +1024,47 @@ localhost | SUCCESS => {
                 "inode_used": 2531,
                 "mount": "/var",
                 "options": "rw,seclabel,relatime",
-                "size_available": 1622855680,
+                "size_available": 1622757376,
                 "size_total": 2046640128,
                 "uuid": "898c19dd-8424-4ef5-8f19-b9476fae8299"
             },
             {
-                "block_available": 22482136,
+                "block_available": 22468681,
                 "block_size": 4096,
                 "block_total": 47473401,
-                "block_used": 24991265,
+                "block_used": 25004720,
                 "device": "/dev/mapper/rootvg-homelv",
                 "fstype": "ext4",
-                "inode_available": 11863437,
+                "inode_available": 11862469,
                 "inode_total": 12124160,
-                "inode_used": 260723,
+                "inode_used": 261691,
                 "mount": "/home",
                 "options": "rw,seclabel,relatime",
-                "size_available": 92086829056,
+                "size_available": 92031717376,
                 "size_total": 194451050496,
                 "uuid": "4130faf4-1b8c-41b6-844c-6afe2b8d5fdc"
             },
             {
-                "block_available": 171267,
+                "block_available": 172375,
                 "block_size": 4096,
                 "block_total": 249830,
-                "block_used": 78563,
+                "block_used": 77455,
                 "device": "/dev/mapper/rootvg-loglv",
                 "fstype": "ext4",
-                "inode_available": 65361,
+                "inode_available": 65362,
                 "inode_total": 65536,
-                "inode_used": 175,
+                "inode_used": 174,
                 "mount": "/var/log",
                 "options": "rw,seclabel,relatime",
-                "size_available": 701509632,
+                "size_available": 706048000,
                 "size_total": 1023303680,
                 "uuid": "fb1e35c6-9e33-48fa-ba2a-4618a63ffef0"
             },
             {
-                "block_available": 575124,
+                "block_available": 575102,
                 "block_size": 4096,
                 "block_total": 1531792,
-                "block_used": 956668,
+                "block_used": 956690,
                 "device": "/dev/mapper/rootvg-cachelv",
                 "fstype": "ext4",
                 "inode_available": 391527,
@@ -1073,7 +1072,7 @@ localhost | SUCCESS => {
                 "inode_used": 1689,
                 "mount": "/var/cache",
                 "options": "rw,seclabel,relatime",
-                "size_available": 2355707904,
+                "size_available": 2355617792,
                 "size_total": 6274220032,
                 "uuid": "04c0dc99-614d-4d94-97c5-050822e493ee"
             },
@@ -1195,7 +1194,7 @@ localhost | SUCCESS => {
         "ansible_ssh_host_key_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKG5gtTsghyZqZxMw0UrLUBaRt2Cbck8GDneKqmZFfq3LUJw4mRI49U4wl2irhhOva58iLVRuwB42ULT3Q1T7WM=",
         "ansible_ssh_host_key_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAII/3Xq+6/4H8VCqLOPq4sUmhoMqa9JZA/ooj4QoDn+Jp",
         "ansible_ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABgQCy3HqR29G3gRFTixBs8TC1Q3RT3zy/B44KJ58nx2q19Bnac8XqSuTzuVTFg4QV5UJssYGWJsjDi0T3VLwiT5Xvok3SRnTB572eQKenLswUNhW8LKB1ybFrrON+zZflSCCF+4crynmCyzQf7Wc+QzM8ZcDF7exFQerTCnbiYUXujmiil/s3xsgXk72gI6CcoaYCB/6iZlwiPsKqAtHFtng1pAthpaau8C8n9PvWm8ZSUoJHrWr1ju9JlTYslgRvnhVUd2teozLcd+G6LxaLaA/72MgJIfVq4/yAXK3jBM1B6E3tABg6DPBFwN1KTJIBWtj5J1N8E0CgRFGG5SD+pyX8++6WwD+WEbpOQcMtdd2KzIck29yDqNb+WRkoIY+4DhmhKYmkwQy8S4A7DpD6RccLOajiRpvTTGVkSqvOS1UhhVYMvJUsz31I1L22aerg24wTkdlRRgUKAeQ9NXJUJu0NIRiFZPAMQOyH1HQtmtcrsfz+PEo4WzRiKsB1kVgbrzM=",
-        "ansible_swapfree_mb": 22958,
+        "ansible_swapfree_mb": 23097,
         "ansible_swaptotal_mb": 23727,
         "ansible_system": "Linux",
         "ansible_system_capabilities": [
@@ -1203,7 +1202,7 @@ localhost | SUCCESS => {
         ],
         "ansible_system_capabilities_enforced": "True",
         "ansible_system_vendor": "LENOVO",
-        "ansible_uptime_seconds": 443384,
+        "ansible_uptime_seconds": 524025,
         "ansible_user_dir": "/home/chris",
         "ansible_user_gecos": "Chris",
         "ansible_user_gid": 1000,
@@ -1445,14 +1444,14 @@ localhost | SUCCESS => {
             },
             "hw_timestamp_filters": [],
             "ipv4": {
-                "address": "10.0.72.209",
-                "broadcast": "10.0.75.255",
-                "netmask": "255.255.252.0",
-                "network": "10.0.72.0"
+                "address": "172.31.118.167",
+                "broadcast": "172.31.118.255",
+                "netmask": "255.255.255.0",
+                "network": "172.31.118.0"
             },
             "ipv6": [
                 {
-                    "address": "fe80::74f1:fb3a:c1fe:3c9c",
+                    "address": "fe80::98a9:c774:b7c:919a",
                     "prefix": "64",
                     "scope": "link"
                 }
