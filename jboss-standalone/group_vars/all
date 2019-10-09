@@ -23,10 +23,11 @@ ec2_hosts: all
 #GCP Specific Variables
 my_gcp_project: ctjon-gcp-demo
 my_gcp_cred_file: /home/chris/RhDocuments/ctjon-gcp-demo-523095e1a294.json
-my_gcp_zone: us-west-1a
+my_gcp_zone: us-west1-a
 my_gcp_region: us-west1
 
 # Other Variables
+instance_count: 3
 wait_for_port: 22
 
 # This user name will be set by Tower, when run through Tower
