@@ -8,5 +8,6 @@ ec2_instance_type: t2.micro
 ec2_keypair: ctjon 
 ec2_security_group: default
 ec2_instance_count: 3
+ec2_tag_group: ctjon_windows
 
 tower_user_name: ctjon
