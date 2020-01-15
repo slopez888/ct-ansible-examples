@@ -48,7 +48,7 @@
 
 - name: Download updated jboss-modules.jar to fix null pointer exception error
   get_url: 
-    url: http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
+    url: https://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
     dest: /usr/share/jboss-as-{{JBOSS_AS_RELEASE}}/jboss-modules.jar
     force: yes
     backup: yes
