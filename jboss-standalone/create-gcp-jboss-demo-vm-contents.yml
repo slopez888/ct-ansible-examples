@@ -22,7 +22,7 @@
       zone: "{{ zone }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       scopes:
         - https://www.googleapis.com/auth/compute
@@ -34,7 +34,7 @@
       name: 'gcp-network-instance'
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       scopes:
         - https://www.googleapis.com/auth/compute
@@ -47,7 +47,7 @@
       region: "{{ region }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       scopes:
         - https://www.googleapis.com/auth/compute
@@ -72,7 +72,7 @@
       zone: "{{ zone }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       scopes:
         - https://www.googleapis.com/auth/compute
@@ -88,7 +88,7 @@
       network: "{{ network }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       state: present
 
@@ -100,7 +100,7 @@
       network: "{{ network }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
-      service_account_contents: "{{gcp_service_account_contents}}"
+      service_account_contents: "{{gcp_service_account_contents|string}}"
       #service_account_file: "{{ gcp_cred_file }}"
       state: present
 
