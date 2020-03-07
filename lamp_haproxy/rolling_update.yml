@@ -28,6 +28,7 @@
 
   roles:
   - common
+  - apply_updates
   - base-apache
   - web
 

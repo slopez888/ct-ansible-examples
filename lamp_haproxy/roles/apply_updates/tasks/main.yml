@@ -1,0 +1,6 @@
+---
+# tasks file for apply_updates
+- name: perform yum update on all packages
+  yum: 
+    name: "*"
+    state: latest
