@@ -11,17 +11,14 @@
   tasks:
   - name: Launch AWS instances for jboss_demo
     ec2:
-      #access_key: "{{ ec2_access_key }}"
-      #secret_key: "{{ ec2_secret_key }}"
       keypair: "{{ ec2_keypair }}"
-      #group: "{{ ec2_security_group }}"
       type: "{{ ec2_instance_type }}"
       image: "{{ ec2_image }}"
       region: "{{ ec2_region }}"
       zone: "{{ ec2_zone }}"
-      #vpc_id: "{{ ec2_vpc }}"
       vpc_subnet_id: "{{ ec2_subnet_id }}"
-      instance_tags: "{'ansible_group':'jboss', 'type':'{{ ec2_instance_type }}', 'Name':'{{ tower_user_name }}''_jboss_demo'}"
+      id: "{{ ec2_instance_name }}'
+      instance_tags: "{'ansible_group':'jboss', 'type':'{{ ec2_instance_type }}', 'Name':'{{ ec2_instance_prefix }}''_jboss_demo'}"
       count: "{{ ec2_instance_count }}"
       assign_public_ip: yes
       wait: true
