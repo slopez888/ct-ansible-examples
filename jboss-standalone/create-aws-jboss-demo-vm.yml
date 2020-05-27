@@ -9,7 +9,7 @@
   - group_vars/all
 
   tasks:
-  - name: Launch {{ec2_instance_count}} AWS instances for jboss_demo
+  - name: Launch AWS instances for jboss_demo
     ec2:
       access_key: "{{ ec2_access_key }}"
       secret_key: "{{ ec2_secret_key }}"
