@@ -18,6 +18,7 @@
       type: "{{ ec2_instance_type }}"
       image: "{{ ec2_image }}"
       region: "{{ ec2_region }}"
+      vpc_subnet_id: "{{ subnet_id }}"
       instance_tags: "{'ansible_group':'jboss', 'type':'{{ ec2_instance_type }}', 'group':'{{ ec2_security_group }}', 'Name':'{{ tower_user_name }}''_jboss_demo'}"
       count: "{{ ec2_instance_count }}"
       wait: true
